@@ -4,7 +4,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:ifg_mobile_estudante/reusableWidgets/veryLongHorizontalButtom.dart';
 import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
-
+import 'package:ifg_mobile_estudante/reusableWidgets/horizontalBorderlessButtom.dart';
+import 'rectoryMessageScreen.dart';
 class RectoryScreen extends StatelessWidget {
   RectoryScreen({super.key});
 
@@ -13,7 +14,7 @@ class RectoryScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -62,8 +63,7 @@ class RectoryScreen extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: backgroundColor,
-              border:
-                  Border.all(color: mainColor, width: screenWidth * 0.0025),
+              border: Border.all(color: mainColor, width: screenWidth * 0.0025),
             ),
             child: Padding(
               padding: EdgeInsets.all(screenWidth * 0.00125),
@@ -102,9 +102,22 @@ class RectoryScreen extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
-            child: Center(
-                child: Column(
+            child: Column(
               children: [
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  HorizontalBorderlessButtom(
+                    'Mensagem \nda reitoria',
+                    Icons.message,
+                    onPressed: () async {
+                        Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RectoryMessageScreen(),
+                              ),
+                            );
+                    },
+                  ),
+                ]),
                 SizedBox(
                   width: screenWidth * 0.1,
                   height: screenHeight * 0.025,
@@ -178,7 +191,7 @@ class RectoryScreen extends StatelessWidget {
                   ],
                 ),
               ],
-            )),
+            ),
           ),
           SizedBox(
             width: screenWidth * 0.1,

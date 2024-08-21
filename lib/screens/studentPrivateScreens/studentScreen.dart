@@ -18,7 +18,7 @@ class StudentScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -63,9 +63,11 @@ class StudentScreen extends StatelessWidget {
         ),
         onPressed: () => {
           showDialog(
+            
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),
@@ -174,11 +176,7 @@ class StudentScreen extends StatelessWidget {
           Center(
             child: Card(
               color: backgroundColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(screenWidth * 0.04),
-                side:
-                    BorderSide(color: mainColor, width: screenWidth * 0.013),
-              ),
+             
               child: Container(
                 padding: EdgeInsets.all(screenWidth * 0.045),
                 width: screenWidth * 0.9,

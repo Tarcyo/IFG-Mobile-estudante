@@ -11,7 +11,7 @@ class AboutsScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -51,6 +51,7 @@ class AboutsScreen extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                       32.0), // Ajuste o valor conforme desejado
@@ -135,6 +136,7 @@ class AboutsScreen extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),
@@ -232,10 +234,7 @@ class AboutsScreen extends StatelessWidget {
           Center(
             child: Card(
               color: backgroundColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(screenWidth * 0.05),
-                side: BorderSide(color: mainColor, width: screenWidth * 0.013),
-              ),
+             
               child: Container(
                 padding: EdgeInsets.all(screenWidth * 0.045),
                 width: screenHeight * 0.9,
@@ -243,26 +242,80 @@ class AboutsScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
                           Icons.star,
                           color: mainColor,
-                          size: screenWidth * 0.04,
+                          size: screenWidth * 0.08,
                         ),
-                        SizedBox(width: screenWidth * 0.02),
+                        SizedBox(width: screenWidth * 0.01),
                         Text(
                           "Objetivos",
                           style: TextStyle(
                               fontSize: screenWidth * 0.055, color: mainColor),
                         ),
+                        SizedBox(width: screenWidth * 0.01),
+                        Icon(
+                          Icons.star,
+                          color: mainColor,
+                          size: screenWidth * 0.08,
+                        ),
                       ],
                     ),
-                    SizedBox(height: screenWidth * 0.055),
+                    SizedBox(height: screenWidth * 0.044),
                     Text(
-                      "O IFG Mobile é um aplicativo que tem como objetivo apresentar o Instituto Federal de Goiás para toda a comunidade acadêmica, reunindo diversas informações relevantes sobre a instituição.\n\nAtualmente é possível acessar o sistema de bibliotecas Web, consultar informações sobre os câmpus, cursos, telefones, notícias, dúvidas frequentes, calendários acadêmicos e conhecer diversos regulamentos e procedimentos acadêmicos relacionados aos cursos do IFG e a vida acadêmica dos alunos.\n\nPara os alunos com vínculo, foi realizada uma integração com o Sistema Acadêmico do IFG permitindo consultar o Histórico, Boletim, Notas de Avaliações, Horários e Materiais de Aulas. O aluno também pode visualizar a Carteira Estudantil. Para os professores, é possível consultar os Horários de Aula e alunos matriculados nos diários. A Identifiação Funcional pode ser visualizada por todos os servidores do IFG. Este aplicativo é uma iniciativa da equipe da Pró-Reitoria de Ensino do Instituto Federal de Goiás.",
+                      "O IFG Mobile é um aplicativo que tem como objetivo apresentar o Instituto Federal de Goiás para toda a comunidade acadêmica, reunindo diversas informações relevantes sobre a instituição.\n\nAtualmente é possível acessar informações da legislação de dos estudantes, informações dos campus e ter acesso a links importatantes do site oficial e de sistemas relevantes do IFG.\n\nPara os alunos com matrícula, é possível fazer login para ter acesso as informações acadêmicas pessoais como notas, faltas, boletim, materiais e a carteira de estudante diretamente nos seus celulares!",
                       style: TextStyle(
                           fontSize: screenWidth * 0.032,
                           color: messageTextColor),
+                    ),
+                    SizedBox(width: screenWidth * 0.01),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.star,
+                          color: mainColor,
+                          size: screenWidth * 0.08,
+                        ),
+                        SizedBox(width: screenWidth * 0.01),
+                        Text(
+                          "Dedicatória",
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.055, color: mainColor),
+                        ),
+                        SizedBox(width: screenWidth * 0.01),
+                        Icon(
+                          Icons.star,
+                          color: mainColor,
+                          size: screenWidth * 0.08,
+                        ),
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    ),
+                    SizedBox(height: screenWidth * 0.044),
+                    Text(
+                      "É com imensa honra que apresento este aplicativo desenvolvido para o Instituto Federal de Goiás, uma instituição que tem desempenhado um papel fundamental na educação e formação de tantas mentes brilhantes. A oportunidade de contribuir para o avanço tecnológico e educacional desta instituição é um marco significativo em minha jornada.\n\nQuero expressar minha profunda gratidão aos orixás e guias espirituais, que me guiaram e iluminaram meu caminho durante todo este processo. Agradeço também, de todo o coração, à minha psicóloga e terapeuta, Doutora Eleusa Pacífico, por seu apoio incansável e por me ajudar a manter o equilíbrio necessário para concluir este projeto.\n\nAgradeço à DTI, especialmente aos professores Daniel Canedo e Leonardo, pela disponibilidade das APIs essenciais. Sem essas ferramentas, a conclusão deste projeto não teria sido possível, e sou eternamente grato por sua generosidade e colaboração.\n\nPor fim, uma expressão de profunda e intensa gratidão ao meu orientador, Leandro Alexandre Freitas. Seu apoio constante em todo o processo foi crucial para meu crescimento e aprendizado. Ele não só me orientou, mas também está me ajudando a alcançar meu sonho de seguir na área acadêmica e me tornar professor. Leandro, sua dedicação e confiança em meu potencial são inestimáveis, e sou extremamente grato por tê-lo como mentor nesta jornada.",
+                      style: TextStyle(
+                          fontSize: screenWidth * 0.032,
+                          color: messageTextColor),
+                    ),
+                    SizedBox(height: screenWidth * 0.02),
+                    Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            "Tarcyo Guilherme Maia Borges",
+                            style: TextStyle(
+                                color: mainColor, fontSize: screenWidth * 0.05),
+                          ),
+                          Text(
+                            "Programador do aplicativo",
+                            style: TextStyle(
+                                color: messageTextColor, fontSize: screenWidth * 0.033),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

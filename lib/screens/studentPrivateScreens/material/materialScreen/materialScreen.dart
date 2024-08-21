@@ -19,7 +19,7 @@ class _MaterialScreenState extends State<MaterialScreen> {
 
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -63,6 +63,7 @@ class _MaterialScreenState extends State<MaterialScreen> {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
+                  backgroundColor: backgroundColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(32.0),
                   ),

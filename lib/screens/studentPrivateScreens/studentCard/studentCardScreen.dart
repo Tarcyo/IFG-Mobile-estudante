@@ -64,6 +64,7 @@ class _StudentCardScreenState extends State<StudentCardScreen>
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
+                          backgroundColor: backgroundColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(32.0),
                           ),
@@ -90,9 +91,7 @@ class _StudentCardScreenState extends State<StudentCardScreen>
                                   fontSize: screenWidth * 0.032,
                                 ),
                               ),
-                              SizedBox(
-                                  height:
-                                      10), // Espaço adicional entre os textos
+                              SizedBox(height: 10),
                               Text(
                                 "Na frente da carteira, você encontrará seu nome, o nome do curso e a modalidade (bacharelado, licenciatura, etc.). No verso, estão as informações de identificação e autenticação do aluno.",
                                 style: TextStyle(
@@ -115,7 +114,6 @@ class _StudentCardScreenState extends State<StudentCardScreen>
                                     ),
                                   ),
                                   onPressed: () {
-                                    // Fechar o diálogo sem sair
                                     Navigator.of(context).pop();
                                   },
                                   child: Text(

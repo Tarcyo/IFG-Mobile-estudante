@@ -8,7 +8,7 @@ class MapScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,

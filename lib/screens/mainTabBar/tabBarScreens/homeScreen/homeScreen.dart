@@ -11,7 +11,7 @@ import 'package:ifg_mobile_estudante/reusableWidgets/veryLongHorizontalButtom.da
 import 'package:ifg_mobile_estudante/screens/studentPrivateScreens/studentScreen.dart';
 import 'package:ifg_mobile_estudante/reusableWidgets/roundedButtom.dart';
 import 'dart:io';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -62,6 +62,7 @@ class HomeScreen extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),
@@ -149,6 +150,7 @@ class HomeScreen extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),
@@ -197,7 +199,7 @@ class HomeScreen extends StatelessWidget {
                         child: Text(
                           "Ok",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: backgroundColor,
                             fontSize: screenWidth * 0.032,
                           ),
                         ),
@@ -210,18 +212,31 @@ class HomeScreen extends StatelessWidget {
           )
         },
       ),
-      center: Container(
-        height: screenHeight * 0.2,
-        width: screenHeight * 0.2,
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            image: AssetImage('assets/images/logo B.png'),
-            fit: BoxFit.contain,
-          ),
-        ),
-      ),
+      center: MediaQuery.of(context).platformBrightness == Brightness.dark
+          ? Container(
+              height: screenHeight * 0.2,
+              width: screenHeight * 0.2,
+              decoration: BoxDecoration(
+                color: backgroundColor,
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage('assets/images/logo B-dark.png'),
+                  fit: BoxFit.contain,
+                ),
+              ),
+            )
+          : Container(
+              height: screenHeight * 0.2,
+              width: screenHeight * 0.2,
+              decoration: BoxDecoration(
+                color: backgroundColor,
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage('assets/images/logo B.png'),
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
       top: Text(
         "IFG Mobile Estudante",
         style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
@@ -374,15 +389,16 @@ class HomeScreen extends StatelessWidget {
               "Painel do estudante",
               Icons.person,
               onPressed: () async {
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-
+                FlutterSecureStorage storage = FlutterSecureStorage();
                 TextEditingController matriculaController =
                     TextEditingController(
-                        text: prefs.getString('matricula') ?? "");
-                TextEditingController senhaController = TextEditingController(
-                  text: prefs.getString('senha') ?? "",
+                  text: await storage.read(key: 'matricula') ?? "",
                 );
-                bool remember = prefs.getBool('lembrar') ?? false;
+                TextEditingController senhaController = TextEditingController(
+                  text: await storage.read(key: 'senha') ?? "",
+                );
+                bool remember = (await storage.read(key: 'lembrar')) == 'true';
+
                 showModalBottomSheet(
                   isDismissible: false,
                   backgroundColor: backgroundColor,
@@ -415,8 +431,9 @@ class HomeScreen extends StatelessWidget {
                                 Text(
                                   'Requer autenticação',
                                   style: TextStyle(
-                                      fontSize: screenWidth * 0.06,
-                                      color: mainColor),
+                                    fontSize: screenWidth * 0.06,
+                                    color: mainColor,
+                                  ),
                                 ),
                                 SizedBox(height: screenHeight * 0.01),
                                 TextField(
@@ -449,11 +466,7 @@ class HomeScreen extends StatelessWidget {
                                 Row(
                                   children: [
                                     RememberData(() {
-                                      if (remember) {
-                                        remember = false;
-                                      } else {
-                                        remember = true;
-                                      }
+                                      remember = !remember;
                                     }, remember),
                                     Text(
                                       'Lembrar minha identificação',
@@ -474,20 +487,21 @@ class HomeScreen extends StatelessWidget {
                                     RoundedButtom(
                                       "Entrar",
                                       onPressed: () async {
-                                        SharedPreferences prefs =
-                                            await SharedPreferences
-                                                .getInstance();
-
                                         if (remember) {
-                                          prefs.setString("matricula",
-                                              matriculaController.text);
-                                          prefs.setString(
-                                              "senha", senhaController.text);
-                                          prefs.setBool("lembrar", remember);
+                                          await storage.write(
+                                              key: 'matricula',
+                                              value: matriculaController.text);
+                                          await storage.write(
+                                              key: 'senha',
+                                              value: senhaController.text);
+                                          await storage.write(
+                                              key: 'lembrar',
+                                              value: remember.toString());
                                         } else {
-                                          prefs.setString("matricula", "");
-                                          prefs.setString("senha", "");
-                                          prefs.setBool("lembrar", remember);
+                                          await storage.delete(
+                                              key: 'matricula');
+                                          await storage.delete(key: 'senha');
+                                          await storage.delete(key: 'lembrar');
                                         }
                                         Navigator.of(context).pop();
 

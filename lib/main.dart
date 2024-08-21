@@ -18,6 +18,8 @@ class IFG_Mobile_Estudante extends StatelessWidget {
 
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
+    setDarkMode(MediaQuery.of(context).platformBrightness == Brightness.dark);
+
     return MaterialApp(
       title: 'IFG Mobile Estudante',
       theme: ThemeData(

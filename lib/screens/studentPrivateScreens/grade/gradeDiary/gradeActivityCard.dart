@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class GradeActivityCard extends StatelessWidget {
@@ -160,9 +161,8 @@ class GradeActivityCard extends StatelessWidget {
               ],
             ),
           ),
-          Divider(
-            thickness: 0.15,
-            color: Colors.grey,
+          SizedBox(
+          height: screenWidth*0.08,
           )
         ],
       ),

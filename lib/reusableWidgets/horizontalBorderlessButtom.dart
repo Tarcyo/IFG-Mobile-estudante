@@ -26,13 +26,10 @@ class HorizontalBorderlessButtom extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.zero,
-          backgroundColor: backgroundColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-               180), 
-          ),
+          backgroundColor: Color(0xFF1F1F1F),
+        
           elevation: 0,
-          foregroundColor: onTapButtomColor,
+          foregroundColor: onTapButtonColor,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

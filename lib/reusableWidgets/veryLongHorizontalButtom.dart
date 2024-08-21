@@ -28,15 +28,9 @@ class VeryLongHorizontalButtom extends StatelessWidget {
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.zero,
-                  foregroundColor: onTapButtomColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(screenWidth * 0.09),
-                    side: BorderSide(
-                      color: mainColor,
-                      width: 2.0,
-                    ),
-                  ),
-                  backgroundColor: backgroundColor,
+                  foregroundColor: onTapButtonColor,
+               
+                  backgroundColor: Color(0xFF1F1F1F),
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(screenWidth * 0.0375),

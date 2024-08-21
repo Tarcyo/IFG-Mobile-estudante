@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
+
 class HorizontalButtom extends StatelessWidget {
   final String text;
   final IconData leftIcon;
@@ -17,41 +18,38 @@ class HorizontalButtom extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
-      margin: const EdgeInsets.only(right: 10),
-      width: screenWidth * 0.4, 
-      height: screenWidth * 0.16, 
+      margin: EdgeInsets.only(right: 10),
+      width: screenWidth * 0.4,
+      height: screenWidth * 0.16,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.zero,
-          backgroundColor: backgroundColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(screenWidth * 0.08), 
-            side: const BorderSide(color: mainColor, width: 2.0),
-          ),
+          backgroundColor: Color(0xFF1F1F1F),
           elevation: 0,
-          foregroundColor: onTapButtomColor,
+          foregroundColor: onTapButtonColor,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              width: screenWidth * 0.035, 
-              height: screenWidth * 0.035, 
+              width: screenWidth * 0.035,
+              height: screenWidth * 0.035,
             ),
             Icon(
               leftIcon,
               color: mainColor,
-              size: screenWidth * 0.1, 
+              size: screenWidth * 0.1,
             ),
-            SizedBox(width: screenWidth * 0.035), // 
+            SizedBox(width: screenWidth * 0.035),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   text,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: screenWidth * 0.032, color: messageTextColor), 
+                  style: TextStyle(
+                      fontSize: screenWidth * 0.032, color: messageTextColor),
                 ),
               ],
             ),

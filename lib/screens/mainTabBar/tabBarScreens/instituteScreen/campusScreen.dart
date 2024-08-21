@@ -16,7 +16,7 @@ class CampusScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration:BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -65,7 +65,7 @@ class CampusScreen extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(180),
           border: Border.all(
-            color: messageTextColor,
+            color: backgroundColor,
             width: 1,
           ),
           image: DecorationImage(

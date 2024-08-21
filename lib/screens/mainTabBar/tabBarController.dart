@@ -28,11 +28,11 @@ class _TabBarControllerState extends State<TabBarController> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (canPop) async {
-        if (_navigatorKeys[_selectedTab].currentState?.canPop() ?? false) {
+      onPopInvoked: (canPopNow) async {
+        if (_navigatorKeys[_selectedTab].currentState?.canPop() ?? canPopNow) {
           _navigatorKeys[_selectedTab].currentState?.pop();
           return;
-        } else {
+        } else if (_selectedTab == 0) {
           showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -111,6 +111,15 @@ class _TabBarControllerState extends State<TabBarController> {
               );
             },
           );
+        } else {
+          setState(() {
+            _selectedTab = 0;
+            _pageController.animateToPage(
+              0,
+              duration: Duration(milliseconds: 600),
+              curve: Curves.easeInOut,
+            );
+          });
         }
         ;
       },
@@ -151,7 +160,7 @@ class _TabBarControllerState extends State<TabBarController> {
                 _selectedTab = index;
                 _pageController.animateToPage(
                   index,
-                  duration: Duration(milliseconds: 800),
+                  duration: Duration(milliseconds: 600),
                   curve: Curves.easeInOut,
                 );
               });

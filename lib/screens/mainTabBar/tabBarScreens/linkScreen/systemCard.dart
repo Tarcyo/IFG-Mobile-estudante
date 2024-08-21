@@ -19,12 +19,6 @@ class SystemCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(screenWidth * 0.025),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(1),
-            blurRadius: screenWidth * 0.075,
-          ),
-        ],
       ),
       margin: EdgeInsets.all(screenWidth * 0.025),
       child: GestureDetector(

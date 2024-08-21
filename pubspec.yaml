@@ -1,5 +1,5 @@
 name: ifg_mobile_estudante
-description: Aplicativo do Intituto federal para os alunos da instituição
+description: Aplicativo do Intituto Federal para os alunos da instituição
 publish_to: "none"
 version: 1.0.0+1
 
@@ -15,6 +15,8 @@ flutter:
     - family: Quicksand
       fonts:
         - asset: assets/fonts/Quicksand/Quicksand.ttf
+
+        
 dev_dependencies:
   flutter_launcher_icons: "^0.13.1"
 
@@ -29,7 +31,7 @@ environment:
 dependencies:
   url_launcher: ^6.2.4
   http: ^0.13.3
-  shared_preferences: ^2.2.3
+  flutter_secure_storage: ^9.2.2 
   
 
   

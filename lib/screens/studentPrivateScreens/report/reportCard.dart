@@ -184,10 +184,9 @@ class ReportCard extends StatelessWidget {
               ],
             ),
           ),
-          Divider(
-            thickness: 0.15,
-            color: Colors.grey,
-          ),
+          SizedBox(
+            height: screenWidth * 0.08,
+          )
         ],
       ),
     );

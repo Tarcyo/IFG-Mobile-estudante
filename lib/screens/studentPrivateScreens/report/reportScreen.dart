@@ -37,7 +37,7 @@ class _ReportScreenState extends State<ReportScreen>
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -88,9 +88,11 @@ class _ReportScreenState extends State<ReportScreen>
         ),
         onPressed: () => {
           showDialog(
+            
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),

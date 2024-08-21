@@ -97,6 +97,7 @@ class _ScheduleScreenState extends State<ScheduleScreen>
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                 backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),

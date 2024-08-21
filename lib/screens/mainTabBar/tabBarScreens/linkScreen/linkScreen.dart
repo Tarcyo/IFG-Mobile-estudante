@@ -13,7 +13,7 @@ class LinkScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -52,6 +52,7 @@ class LinkScreen extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                       32.0), // Ajuste o valor conforme desejado
@@ -143,6 +144,7 @@ class LinkScreen extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),

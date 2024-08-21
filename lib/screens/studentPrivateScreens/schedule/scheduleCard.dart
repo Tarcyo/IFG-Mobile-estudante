@@ -99,7 +99,11 @@ class ScheduleCard extends StatelessWidget {
                         width: screenWidth * 0.005),
                     Row(
                       children: [
-                        Icon(Icons.person,size: screenWidth * 0.056,color: messageTextColor,),
+                        Icon(
+                          Icons.person,
+                          size: screenWidth * 0.056,
+                          color: messageTextColor,
+                        ),
                         Flexible(
                           child: Text(
                             ' Prof. $teacher',
@@ -119,7 +123,11 @@ class ScheduleCard extends StatelessWidget {
                         width: screenWidth * 0.005),
                     Row(
                       children: [
-                        Icon(Icons.room,size: screenWidth * 0.056,color: messageTextColor,),
+                        Icon(
+                          Icons.room,
+                          size: screenWidth * 0.056,
+                          color: messageTextColor,
+                        ),
                         Flexible(
                           child: Text(
                             ' Sala $classroom',
@@ -140,10 +148,6 @@ class ScheduleCard extends StatelessWidget {
             ],
           ),
         ),
-        Divider(
-          thickness: 0.15,
-          color: Colors.grey,
-        )
       ],
     );
   }

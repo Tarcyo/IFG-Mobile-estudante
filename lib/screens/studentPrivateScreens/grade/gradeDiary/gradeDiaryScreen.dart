@@ -85,6 +85,7 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),
@@ -149,7 +150,7 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
           width: screenHeight * 0.15,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.white,
+            color: backgroundColor,
             border: Border.all(
                 color: mainColor,
                 width: screenWidth* 0.005),

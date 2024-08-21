@@ -20,7 +20,7 @@ class InstituteScreen extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return DecoratedBox(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -62,9 +62,9 @@ class InstituteScreen extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      32.0), // Ajuste o valor conforme desejado
+                  borderRadius: BorderRadius.circular(32.0),
                 ),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -102,8 +102,6 @@ class InstituteScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          // Implementar aqui a lógica para sair
-
                           exit(0);
                         },
                         child: Text(
@@ -122,7 +120,6 @@ class InstituteScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          // Fechar o diálogo sem sair
                           Navigator.of(context).pop();
                         },
                         child: Text(
@@ -152,6 +149,7 @@ class InstituteScreen extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),
@@ -213,28 +211,27 @@ class InstituteScreen extends StatelessWidget {
         },
       ),
       center: Center(
-          child: Container(
-            height: screenHeight * 0.2,
-            width: screenHeight * 0.2,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: backgroundColor,
-              border:
-                  Border.all(color: mainColor, width: screenWidth * 0.0025),
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(screenWidth * 0.00125),
-              child: Icon(
-                Icons.school,
-                size: screenHeight * 0.1,
-                color: mainColor,
-              ),
+        child: Container(
+          height: screenHeight * 0.2,
+          width: screenHeight * 0.2,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: backgroundColor,
+            border: Border.all(color: mainColor, width: screenWidth * 0.0025),
+          ),
+          child: Padding(
+            padding: EdgeInsets.all(screenWidth * 0.00125),
+            child: Icon(
+              Icons.school,
+              size: screenHeight * 0.1,
+              color: mainColor,
             ),
           ),
         ),
+      ),
       top: Text(
         "Sobre a instituição",
-        style: TextStyle(fontSize: screenWidth * 0.06, color:backgroundColor),
+        style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
       ),
       bottom: const SizedBox(width: 1),
     );
@@ -297,8 +294,7 @@ class InstituteScreen extends StatelessWidget {
           SizedBox(height: screenHeight * 0.04),
           Text(
             "Campi e Cursos",
-            style:
-                TextStyle(fontSize: screenWidth * 0.055, color: mainColor),
+            style: TextStyle(fontSize: screenWidth * 0.055, color: mainColor),
           ),
           SizedBox(height: screenHeight * 0.01),
           Wrap(

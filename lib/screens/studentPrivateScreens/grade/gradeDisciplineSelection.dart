@@ -90,6 +90,7 @@ class _GradeDisciplineScreenState extends State<GradeDisciplineScreen>
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),
@@ -110,8 +111,8 @@ class _GradeDisciplineScreenState extends State<GradeDisciplineScreen>
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Aqui você pode acessar os arquivos e recursos disponibilizados pelos seus professores.\n\nCada arquivo é organizado verticalmente para facilitar a navegação. Você encontrará um grande ícone representando o tipo de arquivo e uma opção para abrir o arquivo.\n\n O nome do arquivo é exibido para identificar claramente o conteúdo.\n\n Ao lado do nome do arquivo, você verá o tipo de arquivo, que pode ser um documento, uma apresentação, uma planilha, entre outro\n\nA data em que o arquivo foi disponibilizado é exibida para ajudá-lo(a) a entender a relevância e a ordem dos materiais.",
-                      style: TextStyle(
+                      "Aqui você pode selecionar o ano na parte superir da tela e então selecionar a disciplina que deseja ver suas notas.",
+                      style: TextStyle( 
                         color: messageTextColor,
                         fontSize: screenWidth * 0.032,
                       ),

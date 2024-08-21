@@ -18,7 +18,7 @@ class VerticalButtom extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
-      margin: const EdgeInsets.only(right: 5),
+      margin: EdgeInsets.only(right: 5),
       width: screenWidth * 0.24,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -30,13 +30,9 @@ class VerticalButtom extends StatelessWidget {
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.zero,
-                  backgroundColor: backgroundColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(180),
-                  ),
+                  backgroundColor: Color(0xFF1F1F1F),
                   fixedSize: Size(screenWidth * 0.24, screenWidth * 0.24),
-                  foregroundColor: onTapButtomColor,
-                  side: BorderSide(color: mainColor, width: 2),
+                  foregroundColor: onTapButtonColor,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +47,8 @@ class VerticalButtom extends StatelessWidget {
                       text,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: screenWidth * 0.032, color:messageTextColor),
+                          fontSize: screenWidth * 0.032,
+                          color: messageTextColor),
                     ),
                   ],
                 ),

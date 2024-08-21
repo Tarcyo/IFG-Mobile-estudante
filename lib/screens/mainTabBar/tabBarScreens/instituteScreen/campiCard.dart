@@ -52,7 +52,7 @@ class CampiCard extends StatelessWidget {
                     _city,
                     style: TextStyle(
                       fontSize: screenWidth * 0.032, 
-                      color: backgroundColor,
+                      color: Colors.white,
                     ),
                   ),
                 ),
