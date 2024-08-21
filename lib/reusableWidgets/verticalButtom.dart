@@ -30,7 +30,7 @@ class VerticalButtom extends StatelessWidget {
                 onPressed: onPressed,
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.zero,
-                  backgroundColor: Color(0xFF1F1F1F),
+                  backgroundColor: focusBackgroundColor,
                   fixedSize: Size(screenWidth * 0.24, screenWidth * 0.24),
                   foregroundColor: onTapButtonColor,
                 ),

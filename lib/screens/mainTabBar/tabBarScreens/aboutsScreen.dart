@@ -233,7 +233,8 @@ class AboutsScreen extends StatelessWidget {
           SizedBox(height: screenHeight * 0.01),
           Center(
             child: Card(
-              color: backgroundColor,
+              
+              color: focusBackgroundColor,
              
               child: Container(
                 padding: EdgeInsets.all(screenWidth * 0.045),
@@ -300,7 +301,7 @@ class AboutsScreen extends StatelessWidget {
                           fontSize: screenWidth * 0.032,
                           color: messageTextColor),
                     ),
-                    SizedBox(height: screenWidth * 0.02),
+                    SizedBox(height: screenWidth * 0.015),
                     Center(
                       child: Column(
                         children: [

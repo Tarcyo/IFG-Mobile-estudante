@@ -26,7 +26,7 @@ class HorizontalBorderlessButtom extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.zero,
-          backgroundColor: Color(0xFF1F1F1F),
+          backgroundColor: focusBackgroundColor,
         
           elevation: 0,
           foregroundColor: onTapButtonColor,

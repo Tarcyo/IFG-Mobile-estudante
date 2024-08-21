@@ -16,7 +16,7 @@ class CampusScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return DecoratedBox(
-      decoration:BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
@@ -102,10 +102,9 @@ class CampusScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Card(
-                color: backgroundColor,
+                color: focusBackgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(color: mainColor, width: 5.5),
                 ),
                 child: Container(
                   padding: EdgeInsets.all(16.0),

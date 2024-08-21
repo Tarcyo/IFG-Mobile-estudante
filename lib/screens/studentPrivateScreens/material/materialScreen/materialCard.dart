@@ -120,7 +120,7 @@ class MaterialCard extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: screenWidth * 0.08,
+          height: screenWidth * 0.03,
         )
       ],
     );

@@ -20,10 +20,10 @@ class BackCard extends StatelessWidget {
             width: screenWidth * 0.9,
             height: screenWidth * 1,
             child: Card(
-              color: backgroundColor,
+              color: focusBackgroundColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(screenWidth * 0.043),
-                side: BorderSide(color: mainColor, width: screenWidth * 0.015),
+               
               ),
               child: Container(
                 padding: EdgeInsets.all(screenWidth * 0.02),

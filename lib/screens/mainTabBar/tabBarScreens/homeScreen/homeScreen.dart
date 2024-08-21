@@ -259,11 +259,12 @@ class HomeScreen extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: [
+                    SizedBox(height: screenHeight * 0.015),
                     Row(
                       children: [
                         SizedBox(width: screenWidth * 0.02),
                         HorizontalBorderlessButtom(
-                          'Dúvidas  \nFrequentes',
+                          'Dúvidas \nFrequentes',
                           Icons.question_mark,
                           onPressed: () async {
                             final String jsonData = await rootBundle
@@ -401,7 +402,7 @@ class HomeScreen extends StatelessWidget {
 
                 showModalBottomSheet(
                   isDismissible: false,
-                  backgroundColor: backgroundColor,
+                  backgroundColor: focusBackgroundColor,
                   context: context,
                   isScrollControlled: true,
                   builder: (BuildContext context) {

@@ -238,11 +238,6 @@ class LinkScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            "Sistemas do IFG",
-            style: TextStyle(fontSize: screenWidth * 0.055, color: mainColor),
-          ),
-          SizedBox(height: screenHeight * 0.015),
           Wrap(
             alignment: WrapAlignment.center,
             spacing: 10,

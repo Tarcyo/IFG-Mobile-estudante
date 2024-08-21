@@ -30,7 +30,7 @@ class VeryLongHorizontalButtom extends StatelessWidget {
                   padding: EdgeInsets.zero,
                   foregroundColor: onTapButtonColor,
                
-                  backgroundColor: Color(0xFF1F1F1F),
+                  backgroundColor: focusBackgroundColor,
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(screenWidth * 0.0375),

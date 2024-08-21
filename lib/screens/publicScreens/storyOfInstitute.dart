@@ -70,7 +70,8 @@ class _StoryOfInstituteScreenState extends State<StoryOfInstituteScreen> {
         ),
         top: Text(
           "Histórico do IFG",
-          style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
+          style:
+              TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
         ),
         bottom: SizedBox(
           width: 3,
@@ -89,11 +90,9 @@ class _StoryOfInstituteScreenState extends State<StoryOfInstituteScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Card(
-                color: backgroundColor,
+                color: focusBackgroundColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(screenWidth * 0.04),
-                  side: BorderSide(
-                      color: mainColor, width: screenWidth * 0.011),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 child: Container(
                   padding: EdgeInsets.all(screenWidth * 0.045),
@@ -118,7 +117,8 @@ class _StoryOfInstituteScreenState extends State<StoryOfInstituteScreen> {
                       Text(
                         widget.story,
                         style: TextStyle(
-                            color: messageTextColor, fontSize: screenWidth * 0.032),
+                            color: messageTextColor,
+                            fontSize: screenWidth * 0.032),
                       )
                     ],
                   ),

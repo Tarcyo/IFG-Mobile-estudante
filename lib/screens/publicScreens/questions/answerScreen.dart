@@ -109,17 +109,16 @@ class _AnswerScreenState extends State<AnswerScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Card(
-                color: backgroundColor,
+                color: focusBackgroundColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(screenWidth * 0.04),
-                  side: BorderSide(
-                      color: mainColor, width: screenWidth * 0.011),
+                  borderRadius: BorderRadius.circular(16),
+                
                 ),
                 child: Container(
                   padding: EdgeInsets.all(screenWidth * 0.045),
                   width: screenWidth * 0.888,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         "Resposta",

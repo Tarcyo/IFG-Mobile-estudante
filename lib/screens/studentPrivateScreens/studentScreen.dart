@@ -63,7 +63,6 @@ class StudentScreen extends StatelessWidget {
         ),
         onPressed: () => {
           showDialog(
-            
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
@@ -146,7 +145,8 @@ class StudentScreen extends StatelessWidget {
       bottom: Center(
         child: Text(
           _comprimentoDaHora() + " Tarcyo!",
-          style: TextStyle(fontSize: screenWidth * 0.055, color: backgroundColor),
+          style:
+              TextStyle(fontSize: screenWidth * 0.055, color: backgroundColor),
         ),
       ),
     );
@@ -175,8 +175,7 @@ class StudentScreen extends StatelessWidget {
           SizedBox(width: screenWidth * 0.01, height: screenHeight * 0.01),
           Center(
             child: Card(
-              color: backgroundColor,
-             
+              color: focusBackgroundColor,
               child: Container(
                 padding: EdgeInsets.all(screenWidth * 0.045),
                 width: screenWidth * 0.9,
@@ -299,7 +298,9 @@ class StudentScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: screenHeight*0.02,),
+          SizedBox(
+            height: screenHeight * 0.02,
+          ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),

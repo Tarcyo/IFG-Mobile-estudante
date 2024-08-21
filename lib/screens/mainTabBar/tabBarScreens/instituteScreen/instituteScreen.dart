@@ -6,7 +6,7 @@ import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart';
 import 'package:ifg_mobile_estudante/screens/publicScreens/storyOfInstitute.dart';
 import 'MapScreen.dart';
 import 'dart:convert' show json;
-import 'package:ifg_mobile_estudante/screens/publicScreens/rectoryScreen.dart';
+import 'package:ifg_mobile_estudante/screens/publicScreens/rectory/rectoryScreen.dart';
 import 'dart:io';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:ifg_mobile_estudante/styles/colors.dart';
@@ -230,7 +230,7 @@ class InstituteScreen extends StatelessWidget {
         ),
       ),
       top: Text(
-        "Sobre a instituição",
+        "Instituto e Campi",
         style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
       ),
       bottom: const SizedBox(width: 1),
@@ -245,6 +245,7 @@ class InstituteScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          SizedBox(height: screenHeight * 0.015),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -280,7 +281,7 @@ class InstituteScreen extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: screenHeight * 0.02),
+          SizedBox(height: screenHeight * 0.015),
           VeryLongHorizontalButtom(
             "Mapa do IFG",
             Icons.map,
@@ -291,12 +292,7 @@ class InstituteScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: screenHeight * 0.04),
-          Text(
-            "Campi e Cursos",
-            style: TextStyle(fontSize: screenWidth * 0.055, color: mainColor),
-          ),
-          SizedBox(height: screenHeight * 0.01),
+          SizedBox(height: screenHeight * 0.015),
           Wrap(
             alignment: WrapAlignment.center,
             spacing: screenWidth * 0.05,
