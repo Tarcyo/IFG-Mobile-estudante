@@ -3,7 +3,7 @@ import 'package:ifg_mobile_estudante/screens/mainTabBar/tabBarController.dart';
 import 'tabBarScreens/instituteScreen/instituteScreen.dart';
 import 'tabBarScreens/linkScreen/linkScreen.dart';
 import 'tabBarScreens/homeScreen/homeScreen.dart';
-import 'tabBarScreens/aboutsScreen.dart';
+import 'tabBarScreens/aboutsScreen/aboutsScreen.dart';
 
 class MainTabBar extends StatelessWidget {
   @override
@@ -11,13 +11,14 @@ class MainTabBar extends StatelessWidget {
     return TabBarController(
       items: [
         TabBarItem(
+          
           widget: const HomeScreenTab(),
           icon: Icons.home,
           title: 'Inicio',
         ),
         TabBarItem(
           widget: const InstituteScreenTab(),
-          icon: Icons.school,
+          icon: Icons.business,
           title: 'Instituição',
         ),
         TabBarItem(
@@ -27,8 +28,8 @@ class MainTabBar extends StatelessWidget {
         ),
         TabBarItem(
           widget: const AboutsScreenTab(),
-          icon: Icons.info_outline,
-          title: 'Sobre',
+          icon: Icons.workspace_premium,
+          title: 'Créditos',
         ),
       ],
     );

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/reusableWidgets/horizontalBorderlessButtom.dart';
 import 'package:ifg_mobile_estudante/reusableWidgets/horizontalButtom.dart';
 import 'package:ifg_mobile_estudante/screens/publicScreens/questions/questionList.dart';
@@ -13,6 +12,8 @@ import 'package:ifg_mobile_estudante/reusableWidgets/roundedButtom.dart';
 import 'dart:io';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
+import 'package:flutter/material.dart';
+
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key});
@@ -388,7 +389,7 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: screenHeight * 0.01),
             VeryLongHorizontalButtom(
               "Painel do estudante",
-              Icons.person,
+              Icons.school,
               onPressed: () async {
                 FlutterSecureStorage storage = FlutterSecureStorage();
                 TextEditingController matriculaController =

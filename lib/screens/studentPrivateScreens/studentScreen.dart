@@ -127,8 +127,8 @@ class StudentScreen extends StatelessWidget {
         },
       ),
       center: Container(
-        height: screenHeight * 0.13,
-        width: screenHeight * 0.13,
+        height: screenHeight * 0.17,
+        width: screenHeight * 0.17,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(

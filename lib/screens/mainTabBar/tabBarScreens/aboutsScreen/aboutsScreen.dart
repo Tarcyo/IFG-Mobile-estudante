@@ -1,33 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:ifg_mobile_estudante/reusableWidgets/horizontalBorderlessButtom.dart';
-import 'campiCard.dart';
-import 'package:ifg_mobile_estudante/reusableWidgets/veryLongHorizontalButtom.dart';
-import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart';
-import 'package:ifg_mobile_estudante/screens/publicScreens/storyOfInstitute.dart';
-import 'MapScreen.dart';
-import 'dart:convert' show json;
-import 'package:ifg_mobile_estudante/screens/publicScreens/rectory/rectoryScreen.dart';
 import 'dart:io';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/material.dart';
+import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
-class InstituteScreen extends StatelessWidget {
-  InstituteScreen({Key? key});
+class AboutsScreen extends StatelessWidget {
+  AboutsScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
     return DecoratedBox(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            backgroundColor,
-            backgroundColor,
-          ],
+          colors: [backgroundColor, backgroundColor],
+          stops: [0.3, 0.3],
         ),
       ),
       child: SafeArea(
@@ -64,7 +53,8 @@ class InstituteScreen extends StatelessWidget {
               return AlertDialog(
                 backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32.0),
+                  borderRadius: BorderRadius.circular(
+                      32.0), // Ajuste o valor conforme desejado
                 ),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -84,9 +74,8 @@ class InstituteScreen extends StatelessWidget {
                     Text(
                       "Deseja realmente sair?",
                       style: TextStyle(
-                        color: messageTextColor,
-                        fontSize: screenWidth * 0.032,
-                      ),
+                          color: messageTextColor,
+                          fontSize: screenWidth * 0.032),
                     ),
                   ],
                 ),
@@ -108,7 +97,6 @@ class InstituteScreen extends StatelessWidget {
                           "Sim",
                           style: TextStyle(
                             color: backgroundColor,
-                            fontSize: screenWidth * 0.032,
                           ),
                         ),
                       ),
@@ -126,7 +114,6 @@ class InstituteScreen extends StatelessWidget {
                           "Não",
                           style: TextStyle(
                             color: backgroundColor,
-                            fontSize: screenWidth * 0.032,
                           ),
                         ),
                       ),
@@ -170,9 +157,7 @@ class InstituteScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Para ver a história do instituto, clique em histórico, "
-                      "\n\nPara ver informações e contatos da reitoria clique em reitoria"
-                      "\n\nPara visualizar informações de um campus, clique no botão do respectivo Campus.",
+                      "Esta tela contém os créditos e os objetivos do aplicativo",
                       style: TextStyle(
                         color: messageTextColor,
                         fontSize: screenWidth * 0.032,
@@ -197,7 +182,7 @@ class InstituteScreen extends StatelessWidget {
                         child: Text(
                           "Ok",
                           style: TextStyle(
-                            color: backgroundColor,
+                            color: Colors.white,
                             fontSize: screenWidth * 0.032,
                           ),
                         ),
@@ -222,7 +207,7 @@ class InstituteScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(screenWidth * 0.00125),
             child: Icon(
-             Icons.developer_mode,
+              Icons.workspace_premium,
               size: screenHeight * 0.1,
               color: mainColor,
             ),
@@ -230,7 +215,7 @@ class InstituteScreen extends StatelessWidget {
         ),
       ),
       top: Text(
-        "Instituição",
+        "Sobre o aplicativo",
         style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
       ),
       bottom: const SizedBox(width: 1),
@@ -239,115 +224,51 @@ class InstituteScreen extends StatelessWidget {
 
   Widget _body(BuildContext context, double screenWidth, double screenHeight) {
     return Container(
-      padding: EdgeInsets.only(bottom: screenHeight * 0.01),
+      padding: const EdgeInsets.all(12),
       color: backgroundColor,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: screenHeight * 0.015),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              HorizontalBorderlessButtom(
-                "Histórico \ndo IFG",
-                Icons.history,
-                onPressed: () async {
-                  final String jsonData =
-                      await rootBundle.loadString('assets/data/story.json');
-
-                  final Map<String, dynamic> data = json.decode(jsonData);
-
-                  final story = data['Histórico'];
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => StoryOfInstituteScreen(story),
+          SizedBox(height: screenHeight * 0.01),
+          Center(
+            child: Card(
+              color: focusBackgroundColor,
+              child: Container(
+                padding: EdgeInsets.all(screenWidth * 0.045),
+                width: screenHeight * 0.9,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: screenWidth * 0.044),
+                    Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            "Tarcyo Guilherme Maia Borges",
+                            style: TextStyle(
+                                color: mainColor, fontSize: screenWidth * 0.05),
+                          ),
+                          Text(
+                            "Programador do aplicativo",
+                            style: TextStyle(
+                                color: messageTextColor,
+                                fontSize: screenWidth * 0.033),
+                          ),
+                        ],
+                      ),
                     ),
-                  );
-                },
-              ),
-              SizedBox(width: screenWidth * 0.02),
-              HorizontalBorderlessButtom(
-                'Reitoria',
-                Icons.assignment_ind,
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RectoryScreen(),
-                  ),
+                    SizedBox(height: screenWidth * 0.044),
+                    Text(
+                      "É com imensa honra que apresento este aplicativo desenvolvido para o Instituto Federal de Goiás, uma instituição que tem desempenhado um papel fundamental na educação e formação de tantas mentes brilhantes. A oportunidade de contribuir para o avanço tecnológico e educacional desta instituição é um marco significativo em minha jornada.\n\nQuero expressar minha profunda gratidão aos orixás e guias espirituais, que me guiaram e iluminaram meu caminho durante todo este processo. Agradeço também, de todo o coração, à minha psicóloga e terapeuta, Doutora Eleusa Pacífico, por seu apoio incansável e por me ajudar a manter o equilíbrio necessário para concluir este projeto.\n\nAgradeço à DTI, especialmente aos professores Daniel Canedo e Leonardo, pela disponibilidade das APIs essenciais. Sem essas ferramentas, a conclusão deste projeto não teria sido possível, e sou eternamente grato por sua generosidade e colaboração.\n\nPor fim, uma expressão de profunda e intensa gratidão ao meu orientador, Leandro Alexandre Freitas. Seu apoio constante em todo o processo foi crucial para meu crescimento e aprendizado. Ele não só me orientou, mas também está me ajudando a alcançar meu sonho de seguir na área acadêmica e me tornar professor. Leandro, sua dedicação e confiança em meu potencial são inestimáveis, e sou extremamente grato por tê-lo como mentor nesta jornada.",
+                      style: TextStyle(
+                          fontSize: screenWidth * 0.032,
+                          color: messageTextColor),
+                    ),
+                    SizedBox(height: screenWidth * 0.015),
+                  ],
                 ),
               ),
-            ],
-          ),
-          SizedBox(height: screenHeight * 0.015),
-          VeryLongHorizontalButtom(
-            "Mapa do IFG",
-            Icons.map,
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => MapScreen(),
-              ),
             ),
-          ),
-          SizedBox(height: screenHeight * 0.015),
-          Wrap(
-            alignment: WrapAlignment.center,
-            spacing: screenWidth * 0.05,
-            runSpacing: screenHeight * 0.015,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CampiCard("Águas Lindas"),
-                  CampiCard("Anápolis"),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CampiCard("Aparecida"),
-                  CampiCard("Goiás"),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CampiCard("Formosa"),
-                  CampiCard("Goiânia"),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CampiCard("Goiânia Oeste"),
-                  CampiCard("Itumbiara"),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CampiCard("Inhumas"),
-                  CampiCard("Jataí"),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CampiCard("Luziânia"),
-                  CampiCard("Senador Canedo"),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CampiCard("Uruaçu"),
-                  CampiCard("Valparaíso"),
-                ],
-              ),
-            ],
           ),
         ],
       ),

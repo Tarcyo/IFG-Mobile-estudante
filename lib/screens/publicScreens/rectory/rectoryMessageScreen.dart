@@ -3,10 +3,9 @@ import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class RectoryMessageScreen extends StatelessWidget {
- final String _rectoryMessage;
+  final String _mesage;
   final String _rectorName;
-
-  RectoryMessageScreen(this._rectoryMessage,this._rectorName,{super.key});
+  RectoryMessageScreen(this._mesage, this._rectorName, {Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +17,7 @@ class RectoryMessageScreen extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [backgroundColor, backgroundColor],
+          stops: [0.3, 0.3],
         ),
       ),
       child: SafeArea(
@@ -28,7 +28,6 @@ class RectoryMessageScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _header(context, screenWidth, screenHeight),
                 _body(context, screenWidth, screenHeight),
               ],
             ),
@@ -38,97 +37,77 @@ class RectoryMessageScreen extends StatelessWidget {
     );
   }
 
-  Widget _header(BuildContext context, screenWidth, screenHeight) {
+  Widget _header(
+      BuildContext context, double screenWidth, double screenHeight) {
     return HeaderBuilder(
-        left: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: backgroundColor,
-            size: screenWidth * 0.08,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop("");
-          },
-        ),
-        right: Icon(
-          Icons.help_outline,
-          color: Colors.transparent,
+      left: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: backgroundColor,
           size: screenWidth * 0.08,
         ),
-        center: Center(
-          child: Container(
-            height: screenHeight * 0.15,
-            width: screenHeight * 0.15,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: backgroundColor,
-              border: Border.all(color: mainColor, width: screenWidth * 0.0025),
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(screenWidth * 0.00125),
-              child: Icon(
-                Icons.message,
-                size: screenHeight * 0.1,
-                color: mainColor,
-              ),
-            ),
-          ),
-        ),
-        top: Center(
-          child: Text(
-            "Mensagem da Reitoria",
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: backgroundColor,
-                fontWeight: FontWeight.bold,
-                fontSize: screenWidth * 0.06),
-          ),
-        ),
-        bottom: SizedBox(
-          width: 3,
-        ));
+        onPressed: () {
+          Navigator.of(context).pop("");
+        },
+      ),
+      right: Icon(
+        Icons.help_outline,
+        color: Colors.transparent,
+        size: screenWidth * 0.08,
+      ),
+      center: SizedBox(
+        height: screenHeight * 0.01,
+      ),
+      top: Text(
+        "Mensagem da reitoria",
+        style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
+      ),
+      bottom: const SizedBox(width: 1),
+    );
   }
 
-  Widget _body(BuildContext context, screenWidth, screenHeight) {
-    return Center(
-      child: SizedBox(
-        child: Column(
-          children: [
-            SizedBox(
-              height: screenHeight * 0.015,
-            ),
-            SizedBox(
-              width: screenWidth * 0.94,
-              child: Card(
-                color: focusBackgroundColor,
-                child: Expanded(
-                  child: Container(
-                    padding: EdgeInsets.all(screenWidth * 0.055),
+  Widget _body(BuildContext context, double screenWidth, double screenHeight) {
+    return Container(
+      padding: const EdgeInsets.all(3),
+      color: backgroundColor,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(height: screenHeight * 0.01),
+          Center(
+            child: Card(
+              color: focusBackgroundColor,
+              child: Stack(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(screenWidth * 0.045),
                     width: screenHeight * 0.9,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          height: screenHeight * 0.25,
-                          width: screenHeight * 0.25,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/reitor(a).jpg'), // Replace with correct path
-                              fit: BoxFit.cover,
+                        SizedBox(width: screenWidth * 0.01),
+                        Center(
+                          child: Container(
+                            height: screenWidth * 0.4,
+                            width: screenWidth * 0.4,
+                            decoration: BoxDecoration(
+                              color: backgroundColor,
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image:
+                                    AssetImage('assets/images/reitor(a).jpg'),
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: screenHeight * 0.015,
-                        ),
-                        Text(
-                          _rectoryMessage,
-                          style: TextStyle(
-                            color: messageTextColor,
-                            fontSize: screenWidth * 0.032,
-                          ),
-                        ),
                         SizedBox(height: screenWidth * 0.015),
+                        Text(
+                          _mesage,
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.0333,
+                              color: messageTextColor),
+                        ),
                         Center(
                           child: Column(
                             children: [
@@ -147,14 +126,25 @@ class RectoryMessageScreen extends StatelessWidget {
                             ],
                           ),
                         ),
+                        SizedBox(height: screenWidth * 0.015),
                       ],
                     ),
                   ),
-                ),
+                  Positioned(
+                    top: 8.0,
+                    left: 8.0,
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back, color: mainColor),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
