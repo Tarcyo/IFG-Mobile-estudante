@@ -316,11 +316,10 @@ class StudentScreen extends StatelessWidget {
           SizedBox(
             height: screenHeight * 0.02,
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            physics: const BouncingScrollPhysics(),
+          Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(width: screenWidth * 0.05),
                 VerticalButtom(

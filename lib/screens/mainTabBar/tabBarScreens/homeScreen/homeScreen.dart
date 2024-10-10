@@ -489,9 +489,47 @@ class HomeScreen extends StatelessWidget {
                                     RoundedButtom(
                                       "Entrar",
                                       onPressed: () async {
-                                        if(matriculaController.text.isEmpty){
+                                        if (matriculaController.text.isEmpty) {
                                           return;
                                         }
+
+                                        // Exibir o diálogo de carregamento
+                                        showDialog(
+                                          context: context,
+                                          barrierDismissible: false,
+                                          builder: (BuildContext context) {
+                                            return const Center(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    "Carregando...",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 20),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 40,
+                                                    height: 40,
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      strokeWidth:
+                                                          8.0, // Espessura da linha
+                                                      valueColor:
+                                                          AlwaysStoppedAnimation<
+                                                                  Color>(
+                                                              Colors.white),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+
                                         if (remember) {
                                           await storage.write(
                                               key: 'matricula',
@@ -508,11 +546,15 @@ class HomeScreen extends StatelessWidget {
                                           await storage.delete(key: 'senha');
                                           await storage.delete(key: 'lembrar');
                                         }
-                                        
 
                                         final dadosDoAluno =
                                             await solicitaDadosAluno(
                                                 matriculaController.text);
+
+                                        // Fechar o diálogo de carregamento
+                                        Navigator.of(context,
+                                                rootNavigator: true)
+                                            .pop();
 
                                         if (dadosDoAluno == false) {
                                           showDialog(
@@ -614,12 +656,10 @@ class HomeScreen extends StatelessWidget {
                                             ),
                                           );
                                         }
-
-                                        //Navigator.of(context).pop();
                                       },
-                                    )
+                                    ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                           ),
