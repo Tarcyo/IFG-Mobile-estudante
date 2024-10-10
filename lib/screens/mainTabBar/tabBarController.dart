@@ -35,8 +35,10 @@ class _TabBarControllerState extends State<TabBarController> {
         } else if (_selectedTab == 0) {
           showDialog(
             context: context,
+            
             builder: (BuildContext context) {
               return AlertDialog(
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),

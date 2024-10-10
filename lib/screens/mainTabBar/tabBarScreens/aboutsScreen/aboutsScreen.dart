@@ -215,7 +215,7 @@ class AboutsScreen extends StatelessWidget {
         ),
       ),
       top: Text(
-        "Sobre o aplicativo",
+        "Créditos",
         style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
       ),
       bottom: const SizedBox(width: 1),

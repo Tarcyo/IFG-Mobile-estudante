@@ -222,7 +222,7 @@ class InstituteScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(screenWidth * 0.00125),
             child: Icon(
-             Icons.developer_mode,
+             Icons.business,
               size: screenHeight * 0.1,
               color: mainColor,
             ),

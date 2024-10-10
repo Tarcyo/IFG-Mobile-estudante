@@ -10,8 +10,9 @@ import 'package:ifg_mobile_estudante/reusableWidgets/verticalButtom.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class StudentScreen extends StatelessWidget {
-  const StudentScreen({Key? key});
+  final Map<String, dynamic> _dadosDoAluno;
 
+  StudentScreen(this._dadosDoAluno, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -131,9 +132,10 @@ class StudentScreen extends StatelessWidget {
         width: screenHeight * 0.17,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          image: DecorationImage(
-            image: AssetImage(
-                'assets/images/fotoExemplo.png'), // Replace with correct path
+        ),
+        child: ClipOval(
+          child: Image.network(
+            _dadosDoAluno['full_image_url'],
             fit: BoxFit.cover,
           ),
         ),
@@ -144,7 +146,10 @@ class StudentScreen extends StatelessWidget {
       ),
       bottom: Center(
         child: Text(
-          _comprimentoDaHora() + " Tarcyo!",
+          _comprimentoDaHora() +
+              " " +
+              _primeiroNomeDoAluno(_dadosDoAluno['nome']) +
+              "!",
           style:
               TextStyle(fontSize: screenWidth * 0.055, color: backgroundColor),
         ),
@@ -163,6 +168,16 @@ class StudentScreen extends StatelessWidget {
     } else {
       return 'Boa Noite,';
     }
+  }
+
+  String _primeiroNomeDoAluno(String texto) {
+    int indiceEspaco = texto.indexOf(' ');
+
+    if (indiceEspaco == -1) {
+      return texto;
+    }
+
+    return texto.substring(0, indiceEspaco);
   }
 
   Widget _body(BuildContext context, double screenWidth, double screenHeight) {
@@ -209,7 +224,7 @@ class StudentScreen extends StatelessWidget {
                               ],
                             ),
                             Text(
-                              "20211030180055",
+                              _dadosDoAluno["matricula"],
                               style: TextStyle(
                                 color: messageTextColor,
                                 fontSize: screenWidth * 0.033,
@@ -242,7 +257,7 @@ class StudentScreen extends StatelessWidget {
                               ],
                             ),
                             Text(
-                              "Matriculado",
+                              _dadosDoAluno['situacao'],
                               style: TextStyle(
                                 color: messageTextColor,
                                 fontSize: screenWidth * 0.033,
@@ -282,7 +297,7 @@ class StudentScreen extends StatelessWidget {
                               ],
                             ),
                             Text(
-                              "Tarcyo Guilherme Maia Borges",
+                              _dadosDoAluno['nome'],
                               style: TextStyle(
                                 color: messageTextColor,
                                 fontSize: screenWidth * 0.033,

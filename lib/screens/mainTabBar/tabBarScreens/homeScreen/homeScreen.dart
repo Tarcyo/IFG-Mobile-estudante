@@ -12,8 +12,8 @@ import 'package:ifg_mobile_estudante/reusableWidgets/roundedButtom.dart';
 import 'dart:io';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
+import 'package:ifg_mobile_estudante/services/apiAluno.dart';
 import 'package:flutter/material.dart';
-
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key});
@@ -489,6 +489,9 @@ class HomeScreen extends StatelessWidget {
                                     RoundedButtom(
                                       "Entrar",
                                       onPressed: () async {
+                                        if(matriculaController.text.isEmpty){
+                                          return;
+                                        }
                                         if (remember) {
                                           await storage.write(
                                               key: 'matricula',
@@ -505,15 +508,114 @@ class HomeScreen extends StatelessWidget {
                                           await storage.delete(key: 'senha');
                                           await storage.delete(key: 'lembrar');
                                         }
-                                        Navigator.of(context).pop();
+                                        
 
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                StudentScreen(),
-                                          ),
-                                        );
+                                        final dadosDoAluno =
+                                            await solicitaDadosAluno(
+                                                matriculaController.text);
+
+                                        if (dadosDoAluno == false) {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                backgroundColor:
+                                                    backgroundColor,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          32.0),
+                                                ),
+                                                title: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      "Atenção",
+                                                      style: TextStyle(
+                                                        fontSize:
+                                                            screenWidth * 0.055,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: mainColor,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                content: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    Text(
+                                                      "Falha ao tentar conectar.\nVerifique seus dados e tente novamente.",
+                                                      style: TextStyle(
+                                                        color: messageTextColor,
+                                                        fontSize:
+                                                            screenWidth * 0.032,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                actions: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          backgroundColor:
+                                                              mainColor,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        180.0),
+                                                          ),
+                                                        ),
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text(
+                                                          "Ok",
+                                                          style: TextStyle(
+                                                            color:
+                                                                backgroundColor,
+                                                            fontSize:
+                                                                screenWidth *
+                                                                    0.032,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                        } else {
+                                          final Map<String, dynamic>
+                                              dadosDoAlunoDecodificados =
+                                              json.decode(dadosDoAluno);
+
+                                          print("Os dados são:" +
+                                              dadosDoAlunoDecodificados
+                                                  .toString());
+
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  StudentScreen(
+                                                      dadosDoAlunoDecodificados),
+                                            ),
+                                          );
+                                        }
+
+                                        //Navigator.of(context).pop();
                                       },
                                     )
                                   ],

@@ -1,5 +1,5 @@
 name: ifg_mobile_estudante
-description: Aplicativo do Intituto Federal para os alunos da instituição
+description: Aplicativo do Intituto Federal de Goias para os alunos da instituição
 publish_to: "none"
 version: 1.0.0+1
 
@@ -30,7 +30,7 @@ environment:
 
 dependencies:
   url_launcher: ^6.2.4
-  http: ^0.13.3
+  http: ^1.2.2
   flutter_secure_storage: ^9.2.2 
   
 
