@@ -15,24 +15,26 @@ import 'package:ifg_mobile_estudante/styles/colors.dart';
 import 'package:ifg_mobile_estudante/services/apiAluno.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ifg_mobile_estudante/providers/alreadAutoLogged.dart';
 import 'package:ifg_mobile_estudante/providers/userProvider.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key});
+  HomeScreen({Key? key}) : super(key: key); // Adicionado `super(key: key)`
 
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
-
+    final AlreadAutoLogged alreadAutoLoggedProvider =
+        Provider.of<AlreadAutoLogged>(context);
     final UserProvider userProvider = Provider.of<UserProvider>(context);
 
-    // Verifique se o autoLogin é verdadeiro
-    if (userProvider.autoLogin) {
-      final dadosDoAluno = userProvider.userData;
+    if (userProvider.autoLogin && !alreadAutoLoggedProvider.alreadAutoLogged) {
+      // Altera o estado após a construção do widget
+      Future.microtask(() {
+        alreadAutoLoggedProvider.setAlreadAutoLogged(true);
+        final dadosDoAluno = userProvider.userData;
 
-      // Após a construção do widget, exiba o diálogo se os dados forem inválidos
-      WidgetsBinding.instance.addPostFrameCallback((_) {
         if (dadosDoAluno == false) {
           showDialog(
             context: context,
@@ -762,6 +764,7 @@ Widget _body(BuildContext context, double screenWidth, double screenHeight) {
                                         print("Os dados são:" +
                                             dadosDoAlunoDecodificados
                                                 .toString());
+                                        Navigator.of(context).pop();
 
                                         Navigator.push(
                                           context,

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'screens/mainTabBar/mainTabBar.dart';
-import 'package:ifg_mobile_estudante/providers/userProvider.dart'; // Importa o provider
+import 'package:ifg_mobile_estudante/providers/userProvider.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'services/apiAluno.dart';
+import 'package:ifg_mobile_estudante/providers/alreadAutoLogged.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +24,7 @@ void main() async {
     senhaController.text = await storage.read(key: 'senha') ?? "";
     dadosDoAluno = await solicitaDadosAluno(matricula);
   }
-  runApp(IFG_Mobile_Estudante(autoLogin, matricula, senha,dadosDoAluno));
+  runApp(IFG_Mobile_Estudante(autoLogin, matricula, senha, dadosDoAluno));
 }
 
 class IFG_Mobile_Estudante extends StatelessWidget {
@@ -50,11 +51,12 @@ class IFG_Mobile_Estudante extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-            create: (_) => UserProvider(
-                _autoLogin, _matricula, _senha,_userDada)), // Adiciona o UserProvider
+            create: (_) =>
+                UserProvider(_autoLogin, _matricula, _senha, _userDada)),
+        ChangeNotifierProvider(create: (_) => AlreadAutoLogged()),
       ],
-      child: Consumer<UserProvider>(
-        builder: (context, userProvider, child) {
+      child: Builder(
+        builder: (context) {
           setDarkMode(
               MediaQuery.of(context).platformBrightness == Brightness.dark);
 

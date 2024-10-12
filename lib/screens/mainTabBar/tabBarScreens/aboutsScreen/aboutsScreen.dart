@@ -148,7 +148,7 @@ class AboutsScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Esta tela contém os créditos e os objetivos do aplicativo",
+                      "Esta tela contém os créditos e a dedicatória do aplicativo",
                       style: TextStyle(
                         color: messageTextColor,
                         fontSize: screenWidth * 0.032,
@@ -206,7 +206,7 @@ class AboutsScreen extends StatelessWidget {
         ),
       ),
       top: Text(
-        "Créditos",
+        "Dedicatória",
         style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
       ),
       bottom: const SizedBox(width: 1),

@@ -28,12 +28,12 @@ Color get focusBackgroundColor => _focusBackgroundColor;
 
 setDarkMode(bool isDarkMode) {
   if (isDarkMode) {
-    _backgroundColor = Color(0xFF303030);
+    _backgroundColor = Color(0xFF21222C);
     _messageTextColor = Colors.white;
-    _focusBackgroundColor = Color(0xFF1F1F1F);
+    _focusBackgroundColor = Color(0xFF282A36);
   } else {
-    _backgroundColor = Colors.white;
+    _backgroundColor = Color(0xFFE1E1E1);
+    _focusBackgroundColor = Color(0xFFF0F0F0);
     _messageTextColor = Colors.black;
-    _focusBackgroundColor = Color(0xFFF0F0F1);
   }
 }

@@ -30,7 +30,7 @@ class MainTabBar extends StatelessWidget {
         TabBarItem(
           widget: const AboutsScreenTab(),
           icon: Icons.workspace_premium,
-          title: 'Créditos',
+          title: 'Dedicatória',
         ),
       ],
     );
