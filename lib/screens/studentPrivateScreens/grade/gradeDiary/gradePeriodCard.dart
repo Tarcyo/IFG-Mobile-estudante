@@ -2,18 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class GradePeriodCard extends StatelessWidget {
-  final String activityName;
-  final String activityType;
+
   final double activityMaxGrade;
   final double myGrade;
-  final String activtyDate;
 
   const GradePeriodCard({
-    required this.activityName,
-    required this.activityType,
     required this.activityMaxGrade,
     required this.myGrade,
-    required this.activtyDate,
     Key? key,
   }) : super(key: key);
 
@@ -60,7 +55,7 @@ class GradePeriodCard extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      "Nota:",
+                      "Média Final",
                       style: TextStyle(
                         color: backgroundColor,
                         fontSize: screenWidth * 0.04,

@@ -1,68 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class RectoryMessageScreen extends StatelessWidget {
   final String _mesage;
   final String _rectorName;
   RectoryMessageScreen(this._mesage, this._rectorName, {Key? key});
-
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [backgroundColor, backgroundColor],
-          stops: [0.3, 0.3],
-        ),
-      ),
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _body(context, screenWidth, screenHeight),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
 
-  Widget _header(
-      BuildContext context, double screenWidth, double screenHeight) {
-    return HeaderBuilder(
-      left: IconButton(
-        icon: Icon(
-          Icons.arrow_back,
-          color: backgroundColor,
-          size: screenWidth * 0.08,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: _body(context, screenWidth, screenHeight)),
+            ),
+          ],
         ),
-        onPressed: () {
-          Navigator.of(context).pop("");
-        },
       ),
-      right: Icon(
-        Icons.help_outline,
-        color: Colors.transparent,
-        size: screenWidth * 0.08,
-      ),
-      center: SizedBox(
-        height: screenHeight * 0.01,
-      ),
-      top: Text(
-        "Mensagem da reitoria",
-        style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
-      ),
-      bottom: const SizedBox(width: 1),
     );
   }
 

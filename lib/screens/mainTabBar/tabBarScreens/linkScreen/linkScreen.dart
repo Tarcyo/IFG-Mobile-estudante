@@ -9,30 +9,21 @@ class LinkScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [backgroundColor, backgroundColor],
-        ),
-      ),
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _header(context, screenWidth, screenHeight),
-                _body(context, screenWidth, screenHeight),
-              ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: _body(context, screenWidth, screenHeight)),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -54,8 +45,7 @@ class LinkScreen extends StatelessWidget {
               return AlertDialog(
                 backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      32.0), // Ajuste o valor conforme desejado
+                  borderRadius: BorderRadius.circular(32.0),
                 ),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -63,10 +53,9 @@ class LinkScreen extends StatelessWidget {
                     Text(
                       "Atenção",
                       style: TextStyle(
-                        fontSize: screenWidth * 0.055,
-                        fontWeight: FontWeight.bold,
-                        color: mainColor,
-                      ),
+                          fontSize: screenWidth * 0.055,
+                          fontWeight: FontWeight.bold,
+                          color: mainColor),
                     ),
                   ],
                 ),
@@ -94,8 +83,6 @@ class LinkScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          // Implementar aqui a lógica para sair
-
                           exit(0);
                         },
                         child: Text(
@@ -114,7 +101,6 @@ class LinkScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          // Fechar o diálogo sem sair
                           Navigator.of(context).pop();
                         },
                         child: Text(
@@ -165,7 +151,9 @@ class LinkScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Clique em um botão para ser redirecionado para o respctivo sistema do IFG",
+                      "Para ver a história do instituto, clique em histórico, "
+                      "\n\nPara ver informações e contatos da reitoria clique em reitoria"
+                      "\n\nPara visualizar informações de um campus, clique no botão do respectivo Campus.",
                       style: TextStyle(
                         color: messageTextColor,
                         fontSize: screenWidth * 0.032,
@@ -185,7 +173,6 @@ class LinkScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          // Fechar o diálogo sem sair
                           Navigator.of(context).pop();
                         },
                         child: Text(
@@ -206,8 +193,8 @@ class LinkScreen extends StatelessWidget {
       ),
       center: Center(
         child: Container(
-          height: screenHeight * 0.2,
-          width: screenHeight * 0.2,
+          height: screenHeight * 0.15,
+          width: screenHeight * 0.15,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: backgroundColor,
@@ -224,7 +211,7 @@ class LinkScreen extends StatelessWidget {
         ),
       ),
       top: Text(
-        "Links Externos",
+        "Links",
         style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
       ),
       bottom: const SizedBox(width: 1),

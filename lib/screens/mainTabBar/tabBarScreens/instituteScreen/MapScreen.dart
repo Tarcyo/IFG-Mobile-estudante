@@ -3,37 +3,27 @@ import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class MapScreen extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
 
-    return DecoratedBox(
-      decoration:  BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [backgroundColor, backgroundColor],
-          stops: [0.3, 0.3],
-        ),
-      ),
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _header(context, screenHeight, screenWidth),
-                _body(context, screenHeight, screenWidth),
-              ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: _body(context, screenWidth, screenHeight)),
             ),
-          ),
+          ],
         ),
       ),
     );
   }
-
   Widget _header(
       BuildContext context, double screenHeight, double screenWidth) {
     return HeaderBuilder(
@@ -41,7 +31,7 @@ class MapScreen extends StatelessWidget {
         icon: Icon(
           Icons.arrow_back,
           color: backgroundColor,
-          size: screenWidth * 0.08,
+          size: screenWidth * 0.05,
         ),
         onPressed: () => Navigator.of(context).pop(),
       ),
@@ -51,8 +41,8 @@ class MapScreen extends StatelessWidget {
         size: screenWidth * 0.08,
       ),
       center: Container(
-        height: screenHeight * 0.15,
-        width: screenHeight * 0.15,
+        height: screenHeight * 0.25,
+        width: screenHeight * 0.25,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: backgroundColor,
@@ -60,14 +50,14 @@ class MapScreen extends StatelessWidget {
         child: Center(
           child: Icon(
             Icons.map,
-            size: screenHeight * 0.1,
+            size: screenHeight * 0.15,
             color: mainColor,
           ),
         ),
       ),
       top: Text(
         "Mapa do IFG",
-        style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
+        style: TextStyle(fontSize: screenWidth * 0.04, color: backgroundColor),
       ),
       bottom: SizedBox(
         width: 1,

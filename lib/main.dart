@@ -1,14 +1,43 @@
-import 'package:ifg_mobile_estudante/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'screens/mainTabBar/mainTabBar.dart';
+import 'package:ifg_mobile_estudante/providers/userProvider.dart'; // Importa o provider
+import 'package:ifg_mobile_estudante/styles/colors.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'services/apiAluno.dart';
 
-void main() {
-  runApp(const IFG_Mobile_Estudante());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  TextEditingController senhaController = TextEditingController();
+  FlutterSecureStorage storage = FlutterSecureStorage();
+
+  String matricula = "";
+  String senha = "";
+  bool autoLogin = (await storage.read(key: 'autoLogin')) == 'true';
+  dynamic dadosDoAluno = "";
+
+  if (autoLogin) {
+    matricula = await storage.read(key: 'matricula') ?? "";
+    senhaController.text = await storage.read(key: 'senha') ?? "";
+    dadosDoAluno = await solicitaDadosAluno(matricula);
+  }
+  runApp(IFG_Mobile_Estudante(autoLogin, matricula, senha,dadosDoAluno));
 }
 
 class IFG_Mobile_Estudante extends StatelessWidget {
-  const IFG_Mobile_Estudante({Key? key});
+  final bool _autoLogin;
+  final String _matricula;
+  final String _senha;
+  final dynamic _userDada;
+  const IFG_Mobile_Estudante(
+    this._autoLogin,
+    this._matricula,
+    this._senha,
+    this._userDada, {
+    Key? key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +47,32 @@ class IFG_Mobile_Estudante extends StatelessWidget {
 
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-    setDarkMode(MediaQuery.of(context).platformBrightness == Brightness.dark);
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+            create: (_) => UserProvider(
+                _autoLogin, _matricula, _senha,_userDada)), // Adiciona o UserProvider
+      ],
+      child: Consumer<UserProvider>(
+        builder: (context, userProvider, child) {
+          setDarkMode(
+              MediaQuery.of(context).platformBrightness == Brightness.dark);
 
-    return MaterialApp(
-      title: 'IFG Mobile Estudante',
-      theme: ThemeData(
-        fontFamily: "Quicksand",
-        primaryColor: mainColor,
-        appBarTheme: AppBarTheme(
-          color: backgroundColor,
-          iconTheme: IconThemeData(color: backgroundColor),
-        ),
+          return MaterialApp(
+            title: 'IFG Mobile Estudante',
+            theme: ThemeData(
+              fontFamily: "Quicksand",
+              primaryColor: mainColor,
+              appBarTheme: AppBarTheme(
+                color: backgroundColor,
+                iconTheme: IconThemeData(color: backgroundColor),
+              ),
+            ),
+            debugShowCheckedModeBanner: false,
+            home: MainTabBar(),
+          );
+        },
       ),
-      debugShowCheckedModeBanner: false,
-      home: MainTabBar(),
     );
   }
 }

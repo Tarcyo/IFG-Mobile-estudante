@@ -47,21 +47,16 @@ class _ScheduleScreenState extends State<ScheduleScreen>
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          color: backgroundColor,
-        ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _header(context, screenWidth, screenHeight),
-              Expanded(
-                child: _body(context, screenWidth, screenHeight),
-              ),
-            ],
-          ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: _body(context, screenWidth, screenHeight),
+            ),
+          ],
         ),
       ),
     );
@@ -97,7 +92,7 @@ class _ScheduleScreenState extends State<ScheduleScreen>
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                 backgroundColor: backgroundColor,
+                backgroundColor: backgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(32.0),
                 ),
@@ -180,12 +175,14 @@ class _ScheduleScreenState extends State<ScheduleScreen>
       ),
       bottom: Center(
         child: TabBar(
+          
           tabAlignment: TabAlignment.center,
           controller: _tabController,
           isScrollable: true,
           labelColor: backgroundColor,
           unselectedLabelColor: Colors.greenAccent[100],
           indicatorColor: backgroundColor,
+          
           dividerColor: Colors.transparent,
           indicatorPadding: EdgeInsets.zero,
           tabs: daysOfWeek
@@ -209,6 +206,7 @@ class _ScheduleScreenState extends State<ScheduleScreen>
 
   Widget _buildDaySchedule(BuildContext context, screenWidth, screenHeight) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -218,6 +216,41 @@ class _ScheduleScreenState extends State<ScheduleScreen>
             classroom: "311",
             discipline: "Sistemas Distribuidos",
             teacher: "Leandro Freitas",
+          ),
+          const ScheduleCard(
+            begin: "20:45",
+            end: "22:30",
+            classroom: "311",
+            discipline: "Prática Fábrica de Software",
+            teacher: "Elymar Cabral",
+          ),
+          const ScheduleCard(
+            begin: "20:45",
+            end: "22:30",
+            classroom: "311",
+            discipline: "Prática Fábrica de Software",
+            teacher: "Elymar Cabral",
+          ),
+          const ScheduleCard(
+            begin: "20:45",
+            end: "22:30",
+            classroom: "311",
+            discipline: "Prática Fábrica de Software",
+            teacher: "Elymar Cabral",
+          ),
+          const ScheduleCard(
+            begin: "20:45",
+            end: "22:30",
+            classroom: "311",
+            discipline: "Prática Fábrica de Software",
+            teacher: "Elymar Cabral",
+          ),
+          const ScheduleCard(
+            begin: "20:45",
+            end: "22:30",
+            classroom: "311",
+            discipline: "Prática Fábrica de Software",
+            teacher: "Elymar Cabral",
           ),
           const ScheduleCard(
             begin: "20:45",

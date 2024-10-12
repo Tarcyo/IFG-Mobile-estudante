@@ -30,178 +30,171 @@ class _StudentCardScreenState extends State<StudentCardScreen>
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [backgroundColor, backgroundColor],
-            stops: [0.1, 0.1],
-          ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  _buildFrontCard(),
+                  _buildBackCard(),
+                ],
+              ),
+            ),
+          ],
         ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              HeaderBuilder(
-                left: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: backgroundColor,
-                    size: screenWidth * 0.08,
-                  ),
-                  onPressed: () => Navigator.of(context).pop(),
+      ),
+    );
+  }
+
+  Widget _header(context, screenWidth, screenHeight) {
+    return HeaderBuilder(
+      left: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: backgroundColor,
+          size: screenWidth * 0.08,
+        ),
+        onPressed: () => Navigator.of(context).pop(),
+      ),
+      right: IconButton(
+        icon: Icon(
+          Icons.help_outline,
+          color: backgroundColor,
+          size: screenWidth * 0.08,
+        ),
+        onPressed: () => {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                backgroundColor: backgroundColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32.0),
                 ),
-                right: IconButton(
-                  icon: Icon(
-                    Icons.help_outline,
-                    color: backgroundColor,
-                    size: screenWidth * 0.08,
-                  ),
-                  onPressed: () => {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          backgroundColor: backgroundColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(32.0),
-                          ),
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Ajuda",
-                                style: TextStyle(
-                                  fontSize: screenWidth * 0.055,
-                                  fontWeight: FontWeight.bold,
-                                  color: mainColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                "Esta é a sua carteira estudantil. Aqui você pode visualizar as informações importantes sobre sua matrícula e identificação.",
-                                style: TextStyle(
-                                  color: messageTextColor,
-                                  fontSize: screenWidth * 0.032,
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                "Na frente da carteira, você encontrará seu nome, o nome do curso e a modalidade (bacharelado, licenciatura, etc.). No verso, estão as informações de identificação e autenticação do aluno.",
-                                style: TextStyle(
-                                  color: messageTextColor,
-                                  fontSize: screenWidth * 0.032,
-                                ),
-                              ),
-                            ],
-                          ),
-                          actions: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: mainColor,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(180.0),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text(
-                                    "Ok",
-                                    style: TextStyle(
-                                      color: backgroundColor,
-                                      fontSize: screenWidth * 0.032,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        );
-                      },
-                    )
-                  },
-                ),
-                center: Center(
-                  child: Container(
-                    height: screenHeight * 0.15,
-                    width: screenHeight * 0.15,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor,
-                      border: Border.all(color: mainColor, width: 1),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(0.04 * screenWidth),
-                      child: Icon(
-                        Icons.badge,
-                        size: screenHeight * 0.1,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Ajuda",
+                      style: TextStyle(
+                        fontSize: screenWidth * 0.055,
+                        fontWeight: FontWeight.bold,
                         color: mainColor,
                       ),
                     ),
-                  ),
+                  ],
                 ),
-                top: Text(
-                  "Carteira Estudantil",
-                  style: TextStyle(
-                      fontSize: screenWidth * 0.06, color: backgroundColor),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Esta é a sua carteira estudantil. Aqui você pode visualizar as informações importantes sobre sua matrícula e identificação.",
+                      style: TextStyle(
+                        color: messageTextColor,
+                        fontSize: screenWidth * 0.032,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      "Na frente da carteira, você encontrará seu nome, o nome do curso e a modalidade (bacharelado, licenciatura, etc.). No verso, estão as informações de identificação e autenticação do aluno.",
+                      style: TextStyle(
+                        color: messageTextColor,
+                        fontSize: screenWidth * 0.032,
+                      ),
+                    ),
+                  ],
                 ),
-                bottom: Center(
-                  child: TabBar(
-                    tabAlignment: TabAlignment.center,
-                    controller: _tabController,
-                    isScrollable: true,
-                    labelColor: backgroundColor,
-                    unselectedLabelColor: Colors.greenAccent[100],
-                    indicatorColor: backgroundColor,
-                    dividerColor: Colors.transparent,
-                    indicatorPadding: EdgeInsets.zero,
-                    tabs: [
-                      Tab(
-                        child: Container(
-                          child: Text(
-                            "Frente",
-                            style: TextStyle(
-                              fontSize: screenWidth * 0.035,
-                            ),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: mainColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(180.0),
                           ),
                         ),
-                      ),
-                      Tab(
-                        child: Container(
-                          child: Text(
-                            "Verso",
-                            style: TextStyle(
-                              fontSize: screenWidth * 0.035,
-                            ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          "Ok",
+                          style: TextStyle(
+                            color: backgroundColor,
+                            fontSize: screenWidth * 0.032,
                           ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              ),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: [
-                    _buildFrontCard(),
-                    _buildBackCard(),
-                  ],
-                ),
-              ),
-            ],
+                ],
+              );
+            },
+          )
+        },
+      ),
+      center: Center(
+        child: Container(
+          height: screenHeight * 0.15,
+          width: screenHeight * 0.15,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: backgroundColor,
+            border: Border.all(color: mainColor, width: 1),
           ),
+          child: Padding(
+            padding: EdgeInsets.all(0.04 * screenWidth),
+            child: Icon(
+              Icons.badge,
+              size: screenHeight * 0.1,
+              color: mainColor,
+            ),
+          ),
+        ),
+      ),
+      top: Text(
+        "Carteira Estudantil",
+        style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
+      ),
+      bottom: Center(
+        child: TabBar(
+          tabAlignment: TabAlignment.center,
+          controller: _tabController,
+          isScrollable: true,
+          labelColor: backgroundColor,
+          unselectedLabelColor: Colors.greenAccent[100],
+          indicatorColor: backgroundColor,
+          dividerColor: Colors.transparent,
+          indicatorPadding: EdgeInsets.zero,
+          tabs: [
+            Tab(
+              child: Container(
+                child: Text(
+                  "Frente",
+                  style: TextStyle(
+                    fontSize: screenWidth * 0.035,
+                  ),
+                ),
+              ),
+            ),
+            Tab(
+              child: Container(
+                child: Text(
+                  "Verso",
+                  style: TextStyle(
+                    fontSize: screenWidth * 0.035,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -209,6 +202,7 @@ class _StudentCardScreenState extends State<StudentCardScreen>
 
   Widget _buildFrontCard() {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -220,6 +214,7 @@ class _StudentCardScreenState extends State<StudentCardScreen>
 
   Widget _buildBackCard() {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

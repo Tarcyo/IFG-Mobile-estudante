@@ -21,8 +21,8 @@ class MaterialCard extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(vertical: screenWidth * 0.05),
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+          margin: EdgeInsets.symmetric(vertical: screenWidth * 0.045),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.045),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -119,9 +119,6 @@ class MaterialCard extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
-          height: screenWidth * 0.03,
-        )
       ],
     );
   }

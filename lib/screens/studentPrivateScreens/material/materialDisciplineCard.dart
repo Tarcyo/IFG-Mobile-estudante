@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'materialScreen/materialScreen.dart';
-
+import 'package:ifg_mobile_estudante/styles/colors.dart';
 class MaterialDisciplineCard extends StatelessWidget {
   final String discipline;
 
@@ -34,7 +34,7 @@ class MaterialDisciplineCard extends StatelessWidget {
               height: screenWidth *
                   0.15, 
               decoration: BoxDecoration(
-                color: Colors.green,
+                color: mainColor,
                 borderRadius: BorderRadius.circular(
                     screenWidth *
                         0.05),
@@ -42,7 +42,7 @@ class MaterialDisciplineCard extends StatelessWidget {
               child: Center(
                 child: Icon(
                   Icons.school,
-                  color: Colors.white,
+                  color: backgroundColor,
                   size: screenWidth *
                       0.09,
                 ),
@@ -57,13 +57,12 @@ class MaterialDisciplineCard extends StatelessWidget {
                 discipline,
                 style: TextStyle(
                     fontSize: screenWidth* 0.04,
-                    color: Colors
-                        .green[800]), 
+                    color: mainColor), 
               ),
             ),
             Icon(
               Icons.arrow_forward,
-              color: Colors.green,
+              color: mainColor,
               size: screenWidth *
                   0.043, 
             ),

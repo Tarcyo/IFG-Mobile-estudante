@@ -6,6 +6,7 @@ import 'tabBarScreens/homeScreen/homeScreen.dart';
 import 'tabBarScreens/aboutsScreen/aboutsScreen.dart';
 
 class MainTabBar extends StatelessWidget {
+  const MainTabBar({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return TabBarController(

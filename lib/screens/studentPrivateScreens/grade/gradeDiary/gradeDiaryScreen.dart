@@ -43,22 +43,16 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          color: backgroundColor,
-        ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _header(context, screenWidth, screenHeight),
-              Expanded(
-                child: _body(context, screenWidth, screenHeight),
-              ),
-            ],
-          ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: _body(context, screenWidth, screenHeight),
+            ),
+          ],
         ),
       ),
     );
@@ -151,9 +145,7 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: backgroundColor,
-            border: Border.all(
-                color: mainColor,
-                width: screenWidth* 0.005),
+            border: Border.all(color: mainColor, width: screenWidth * 0.005),
           ),
           child: Padding(
             padding: EdgeInsets.all(screenWidth * 0.02),
@@ -172,9 +164,7 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
       ),
       top: Text(
         "Sistemas Distribuidos",
-        style: TextStyle(
-            fontSize: screenWidth * 0.06,
-            color: backgroundColor),
+        style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
       ),
       bottom: TabBar(
         tabAlignment: TabAlignment.center,
@@ -203,61 +193,34 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
     );
   }
 
-  Widget _body(BuildContext context,screenWidth, screenHeight) {
+  Widget _body(BuildContext context, screenWidth, screenHeight) {
     return TabBarView(
       controller: _tabController,
-      children: periods.map((day) => _buildDaySchedule(context,screenWidth, screenHeight)).toList(),
+      children: periods
+          .map((day) => _buildDaySchedule(context, screenWidth, screenHeight))
+          .toList(),
     );
   }
 
-  Widget _buildDaySchedule(BuildContext context,screenWidth, screenHeight) {
+  Widget _buildDaySchedule(BuildContext context, screenWidth, screenHeight) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: screenWidth * 0.02,
-                height: screenWidth * 0.02,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Média final da etapa",
-                    style: TextStyle(
-                        fontSize: screenWidth * 0.05,
-                        color: mainColor),
-                  ),
-                ],
-              ),
               GradePeriodCard(
-                activityName: "Prova prática",
-                activityMaxGrade: 4,
-                activityType: "Avaliação aplicada pelo professor",
-                activtyDate: "03/01/2023",
+                activityMaxGrade: 10,
                 myGrade: 8.5,
               ),
             ],
           ),
           SizedBox(
-            width:screenWidth* 0.01,
-            height: screenWidth * 0.01,
+            width: screenWidth * 0.015,
+            height: screenWidth * 0.015,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Atividades",
-                style: TextStyle(
-                    fontSize: screenWidth* 0.05,
-                    color: mainColor),
-              ),
-            ],
-          ),
-
           GradeActivityCard(
             activityName: "Prova prática",
             activityMaxGrade: 10,
@@ -265,7 +228,6 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
             activtyDate: "03/01/2023",
             myGrade: 8.5,
           ),
-
           GradeActivityCard(
             activityName: "Projeto em grupo",
             activityMaxGrade: 6,
@@ -273,7 +235,6 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
             activtyDate: "04/01/2023",
             myGrade: 3.3,
           ),
-
           GradeActivityCard(
             activityName: "Atividades em sala",
             activityMaxGrade: 10,
@@ -281,7 +242,6 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
             activtyDate: "06/01/2023",
             myGrade: 2,
           ),
-
         ],
       ),
     );

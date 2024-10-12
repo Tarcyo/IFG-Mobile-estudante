@@ -16,27 +16,16 @@ class _MaterialScreenState extends State<MaterialScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [backgroundColor, backgroundColor],
-            stops: [0.1, 0.1],
-          ),
-        ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _header(context, screenWidth, screenHeight),
-              Expanded(
-                child: _buildBody(context, screenWidth, screenHeight),
-              ),
-            ],
-          ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: _body(context, screenWidth, screenHeight),
+            ),
+          ],
         ),
       ),
     );
@@ -157,63 +146,61 @@ class _MaterialScreenState extends State<MaterialScreen> {
         ));
   }
 
-  Widget _buildBody(BuildContext context, screenWidth, screenHeight) {
-    return SingleChildScrollView(
-      child: Container(
-        child: ListView(
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          children: [
-            MaterialCard(
-              materialName: "Revisão Prova",
-              activityType: "Documento",
-              uploadDate: "03/01/2023",
-              fileExtension: ".mp4",
-            ),
-            MaterialCard(
-              materialName: "Revisão Prova",
-              activityType: "Documento",
-              uploadDate: "03/01/2023",
-              fileExtension: ".pdf",
-            ),
-            MaterialCard(
-              materialName: "Revisão Prova",
-              activityType: "Documento",
-              uploadDate: "03/01/2023",
-              fileExtension: ".jar",
-            ),
-            MaterialCard(
-              materialName: "Revisão Prova",
-              activityType: "Documento",
-              uploadDate: "03/01/2023",
-              fileExtension: ".mp4",
-            ),
-            SizedBox(
-              height: screenWidth * 0.05,
-            ),
-            MaterialCard(
-              materialName: "Revisão Prova",
-              activityType: "Documento",
-              uploadDate: "03/01/2023",
-              fileExtension: ".mp4",
-            ),
-            SizedBox(
-              height: screenWidth * 0.05,
-            ),
-            MaterialCard(
-              materialName: "Revisão Prova",
-              activityType: "Documento",
-              uploadDate: "03/01/2023",
-              fileExtension: ".mp4",
-            ),
-            MaterialCard(
-              materialName: "Revisão Prova",
-              activityType: "Documento",
-              uploadDate: "03/01/2023",
-              fileExtension: ".mp4",
-            ),
-          ],
-        ),
+  Widget _body(BuildContext context, screenWidth, screenHeight) {
+    return Container(
+      child: ListView(
+      physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
+        children: [
+          MaterialCard(
+            materialName: "Revisão Prova",
+            activityType: "Documento",
+            uploadDate: "03/01/2023",
+            fileExtension: ".mp4",
+          ),
+          MaterialCard(
+            materialName: "Revisão Prova",
+            activityType: "Documento",
+            uploadDate: "03/01/2023",
+            fileExtension: ".pdf",
+          ),
+          MaterialCard(
+            materialName: "Revisão Prova",
+            activityType: "Documento",
+            uploadDate: "03/01/2023",
+            fileExtension: ".jar",
+          ),
+          MaterialCard(
+            materialName: "Revisão Prova",
+            activityType: "Documento",
+            uploadDate: "03/01/2023",
+            fileExtension: ".mp4",
+          ),
+          SizedBox(
+            height: screenWidth * 0.05,
+          ),
+          MaterialCard(
+            materialName: "Revisão Prova",
+            activityType: "Documento",
+            uploadDate: "03/01/2023",
+            fileExtension: ".mp4",
+          ),
+          SizedBox(
+            height: screenWidth * 0.05,
+          ),
+          MaterialCard(
+            materialName: "Revisão Prova",
+            activityType: "Documento",
+            uploadDate: "03/01/2023",
+            fileExtension: ".mp4",
+          ),
+          MaterialCard(
+            materialName: "Revisão Prova",
+            activityType: "Documento",
+            uploadDate: "03/01/2023",
+            fileExtension: ".mp4",
+          ),
+        ],
       ),
     );
   }

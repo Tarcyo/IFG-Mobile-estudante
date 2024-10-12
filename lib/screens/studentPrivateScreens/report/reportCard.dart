@@ -184,9 +184,6 @@ class ReportCard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: screenWidth * 0.03,
-          )
         ],
       ),
     );

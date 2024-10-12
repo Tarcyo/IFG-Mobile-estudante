@@ -24,8 +24,8 @@ class ScheduleCard extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.symmetric(vertical: screenWidth * 0.05),
-          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+          margin: EdgeInsets.symmetric(vertical: screenWidth * 0.045),
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.045),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

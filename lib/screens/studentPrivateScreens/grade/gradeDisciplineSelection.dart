@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'gradeDisciplineCard.dart';
-import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart'; // Substitua com o caminho correto
+import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart'; 
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class GradeDisciplineScreen extends StatefulWidget {
@@ -35,26 +35,16 @@ class _GradeDisciplineScreenState extends State<GradeDisciplineScreen>
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [backgroundColor, backgroundColor],
-            stops: [0.1, 0.1],
-          ),
-        ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _header(context, screenWidth, screenHeight),
-              Expanded(
-                child: _body(context, screenWidth, screenHeight),
-              ),
-            ],
-          ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: _body(context, screenWidth, screenHeight),
+            ),
+          ],
         ),
       ),
     );
@@ -112,7 +102,7 @@ class _GradeDisciplineScreenState extends State<GradeDisciplineScreen>
                   children: [
                     Text(
                       "Aqui você pode selecionar o ano na parte superir da tela e então selecionar a disciplina que deseja ver suas notas.",
-                      style: TextStyle( 
+                      style: TextStyle(
                         color: messageTextColor,
                         fontSize: screenWidth * 0.032,
                       ),
@@ -202,6 +192,7 @@ class _GradeDisciplineScreenState extends State<GradeDisciplineScreen>
 
   Widget _buildItem(BuildContext context, screenWidth, screenHeight) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -212,15 +203,15 @@ class _GradeDisciplineScreenState extends State<GradeDisciplineScreen>
           Center(
             child: Text(
               "Selecione a disciplina: ",
-              style:
-                  TextStyle(fontSize: screenWidth * 0.05, color: mainColor),
+              style: TextStyle(fontSize: screenWidth * 0.05, color: mainColor),
             ),
           ),
           SizedBox(
             width: screenWidth * 0.05,
             height: screenWidth * 0.05,
           ),
-          GradeDisciplineCard(discipline: "Sistemas Distribuidos")
+          GradeDisciplineCard(discipline: "Sistemas Distribuidos"),
+          GradeDisciplineCard(discipline: "Fabrica de Software")
         ],
       ),
     );

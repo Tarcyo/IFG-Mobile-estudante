@@ -35,26 +35,16 @@ class _ReportScreenState extends State<ReportScreen>
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [backgroundColor, backgroundColor],
-            stops: [0.1, 0.1],
-          ),
-        ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _header(context, screenWidth, screenHeight),
-              Expanded(
-                child: _body(context, screenWidth, screenHeight),
-              ),
-            ],
-          ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: _body(context, screenWidth, screenHeight),
+            ),
+          ],
         ),
       ),
     );
@@ -88,7 +78,6 @@ class _ReportScreenState extends State<ReportScreen>
         ),
         onPressed: () => {
           showDialog(
-            
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
@@ -212,6 +201,7 @@ class _ReportScreenState extends State<ReportScreen>
   Widget _buildDaySchedule(
       BuildContext context, String year, screenWidth, screenHeight) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

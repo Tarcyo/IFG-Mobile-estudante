@@ -15,22 +15,23 @@ class StoryOfInstituteScreen extends StatefulWidget {
 }
 
 class _StoryOfInstituteScreenState extends State<StoryOfInstituteScreen> {
-  @override
+ @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundColor,
-        body: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _header(context, screenWidth, screenHeight),
-              _body(context, screenWidth, screenHeight),
-            ],
-          ),
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: _body(context, screenWidth, screenHeight)),
+            ),
+          ],
         ),
       ),
     );

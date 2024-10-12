@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart'; // Verifique o caminho correto
 import 'materialDisciplineCard.dart';
+import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class MaterialDisciplineScreen extends StatefulWidget {
   MaterialDisciplineScreen({Key? key}) : super(key: key);
@@ -36,26 +37,16 @@ class _MaterialDisciplineScreenState extends State<MaterialDisciplineScreen>
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.green, Colors.white],
-            stops: [0.1, 0.1],
-          ),
-        ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _header(context, screenWidth, screenHeight),
-              Expanded(
-                child: _body(context, screenWidth, screenHeight),
-              ),
-            ],
-          ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: _body(context, screenWidth, screenHeight),
+            ),
+          ],
         ),
       ),
     );
@@ -75,7 +66,7 @@ class _MaterialDisciplineScreenState extends State<MaterialDisciplineScreen>
       left: IconButton(
         icon: Icon(
           Icons.arrow_back,
-          color: Colors.white,
+          color: backgroundColor,
           size: screenWidth * 0.08,
         ),
         onPressed: () => Navigator.of(context).pop(),
@@ -83,7 +74,7 @@ class _MaterialDisciplineScreenState extends State<MaterialDisciplineScreen>
       right: IconButton(
         icon: Icon(
           Icons.help_outline,
-          color: Colors.white,
+          color: backgroundColor,
           size: screenWidth * 0.08,
         ),
         onPressed: () {},
@@ -94,8 +85,8 @@ class _MaterialDisciplineScreenState extends State<MaterialDisciplineScreen>
           width: screenHeight * 0.15,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.white,
-            border: Border.all(color: Colors.green, width: 1),
+            color: backgroundColor,
+            border: Border.all(color: mainColor, width: 1),
           ),
           child: Padding(
             padding: EdgeInsets.all(screenWidth * 0.02),
@@ -105,7 +96,7 @@ class _MaterialDisciplineScreenState extends State<MaterialDisciplineScreen>
                 Icon(
                   Icons.book,
                   size: screenHeight * 0.1,
-                  color: Colors.green,
+                  color: mainColor,
                 ),
               ],
             ),
@@ -114,16 +105,16 @@ class _MaterialDisciplineScreenState extends State<MaterialDisciplineScreen>
       ),
       top: Text(
         "Material de aula",
-        style: TextStyle(fontSize: screenWidth * 0.06, color: Colors.white),
+        style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
       ),
       bottom: Center(
         child: TabBar(
           tabAlignment: TabAlignment.center,
           controller: _tabController,
           isScrollable: true,
-          labelColor: Colors.white,
+          labelColor: backgroundColor,
           unselectedLabelColor: Colors.greenAccent[100],
-          indicatorColor: Colors.white,
+          indicatorColor: backgroundColor,
           dividerColor: Colors.transparent,
           indicatorPadding: EdgeInsets.zero,
           tabs: widget.yearsOfReport
@@ -147,21 +138,20 @@ class _MaterialDisciplineScreenState extends State<MaterialDisciplineScreen>
 
   Widget _buildDaySchedule(BuildContext context, screenWidth, screenHeight) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            width: screenWidth*0.02,
-            height: screenWidth*0.02,
+            width: screenWidth * 0.02,
+            height: screenWidth * 0.02,
           ),
           Center(
             child: Text(
               "Selecione a disciplina",
-              style:
-                  TextStyle(fontSize: screenWidth * 0.05, color: Colors.green),
+              style: TextStyle(fontSize: screenWidth * 0.05, color: mainColor),
             ),
           ),
-         
           _buildDisciplineCard("Sistemas Distribuídos"),
           _buildDisciplineCard("Prática Fábrica de Software"),
         ],

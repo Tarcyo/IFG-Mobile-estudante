@@ -16,33 +16,21 @@ class InstituteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
 
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            backgroundColor,
-            backgroundColor,
-          ],
-        ),
-      ),
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _header(context, screenWidth, screenHeight),
-                _body(context, screenWidth, screenHeight),
-              ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: _body(context, screenWidth, screenHeight)),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -212,8 +200,8 @@ class InstituteScreen extends StatelessWidget {
       ),
       center: Center(
         child: Container(
-          height: screenHeight * 0.2,
-          width: screenHeight * 0.2,
+          height: screenHeight * 0.15,
+          width: screenHeight * 0.15,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: backgroundColor,
@@ -222,8 +210,8 @@ class InstituteScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(screenWidth * 0.00125),
             child: Icon(
-             Icons.business,
-              size: screenHeight * 0.1,
+              Icons.business,
+              size: screenHeight * 0.08,
               color: mainColor,
             ),
           ),
@@ -295,8 +283,7 @@ class InstituteScreen extends StatelessWidget {
           SizedBox(height: screenHeight * 0.015),
           Wrap(
             alignment: WrapAlignment.center,
-            spacing: screenWidth * 0.05,
-            runSpacing: screenHeight * 0.015,
+          
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

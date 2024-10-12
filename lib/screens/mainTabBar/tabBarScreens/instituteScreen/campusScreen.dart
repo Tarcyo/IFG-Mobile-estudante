@@ -13,29 +13,21 @@ class CampusScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [backgroundColor, backgroundColor],
-        ),
-      ),
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _header(context, screenWidth, screenHeight),
-                _body(context, screenWidth, screenHeight),
-              ],
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: _body(context, screenWidth, screenHeight)),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -60,8 +52,8 @@ class CampusScreen extends StatelessWidget {
         size: screenWidth * 0.08,
       ),
       center: Container(
-        height: screenHeight * 0.25,
-        width: screenHeight * 0.25,
+        height: screenHeight * 0.15,
+        width: screenHeight * 0.15,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(180),
           border: Border.all(

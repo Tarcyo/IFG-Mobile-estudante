@@ -40,23 +40,23 @@ class _RightListState extends State<RightList> {
     }
   }
 
-  @override
+@override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
 
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundColor,
-        body: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _header(context, screenWidth, screenHeight),
-              _body(context, screenWidth),
-            ],
-          ),
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: _body(context, screenWidth, screenHeight)),
+            ),
+          ],
         ),
       ),
     );
@@ -116,7 +116,7 @@ class _RightListState extends State<RightList> {
     );
   }
 
-  Widget _body(BuildContext context, double screenWidth) {
+  Widget _body(BuildContext context, double screenWidth,double height) {
     if (_rules.isEmpty) {
       return Center(
         child: CircularProgressIndicator(),

@@ -28,102 +28,102 @@ class _TabBarControllerState extends State<TabBarController> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (canPopNow) async {
-        if (_navigatorKeys[_selectedTab].currentState?.canPop() ?? canPopNow) {
-          _navigatorKeys[_selectedTab].currentState?.pop();
-          return;
-        } else if (_selectedTab == 0) {
-          showDialog(
-            context: context,
-            
-            builder: (BuildContext context) {
-              return AlertDialog(
-                backgroundColor: backgroundColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32.0),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Atenção",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: mainColor,
-                      ),
-                    ),
-                  ],
-                ),
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Deseja realmente sair?",
-                      style: TextStyle(
-                        color: messageTextColor,
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-                actions: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: mainColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(180.0),
-                          ),
-                        ),
-                        onPressed: () {
-                          exit(0);
-                        },
-                        child: Text(
-                          "Sim",
-                          style: TextStyle(
-                            color: backgroundColor,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: mainColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(180.0),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                          "Não",
-                          style: TextStyle(
-                            color: backgroundColor,
-                            fontSize: 13,
-                          ),
+      onPopInvokedWithResult: (canPopNow, result) async => {
+        if (_navigatorKeys[_selectedTab].currentState?.canPop() ?? canPopNow)
+          {_navigatorKeys[_selectedTab].currentState?.pop()}
+        else if (_selectedTab == 0)
+          {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  backgroundColor: backgroundColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0),
+                  ),
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Atenção",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: mainColor,
                         ),
                       ),
                     ],
                   ),
-                ],
+                  content: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Deseja realmente sair?",
+                        style: TextStyle(
+                          color: messageTextColor,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: mainColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(180.0),
+                            ),
+                          ),
+                          onPressed: () {
+                            exit(0);
+                          },
+                          child: Text(
+                            "Sim",
+                            style: TextStyle(
+                              color: backgroundColor,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: mainColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(180.0),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            "Não",
+                            style: TextStyle(
+                              color: backgroundColor,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              },
+            )
+          }
+        else
+          {
+            setState(() {
+              _selectedTab = 0;
+              _pageController.animateToPage(
+                0,
+                duration: Duration(milliseconds: 600),
+                curve: Curves.easeInOut,
               );
-            },
-          );
-        } else {
-          setState(() {
-            _selectedTab = 0;
-            _pageController.animateToPage(
-              0,
-              duration: Duration(milliseconds: 600),
-              curve: Curves.easeInOut,
-            );
-          });
-        }
-        ;
+            })
+          }
       },
       child: Scaffold(
         body: PageView(

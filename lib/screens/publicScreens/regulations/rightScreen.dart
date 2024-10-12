@@ -19,73 +19,68 @@ class RightScreen extends StatefulWidget {
 class _RightScreenState extends State<RightScreen> {
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [backgroundColor, backgroundColor],
-          stops: [0.1, 0.1],
-        ),
-      ),
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _header(context, screenWidth, screenHeight),
-                SizedBox(
-                  width: screenWidth * 0.025,
-                  height: screenWidth * 0.025,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Card(
-                      color: focusBackgroundColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(screenWidth * 0.045),
-                        width: screenWidth * 0.888,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Regulamento: ",
-                              style: TextStyle(
-                                  color: mainColor,
-                                  fontSize: screenWidth * 0.055),
-                              softWrap: true,
-                            ),
-                            SizedBox(
-                              width: screenWidth * 0.025,
-                              height: screenWidth * 0.025,
-                            ),
-                            Text(
-                              widget._answer,
-                              style: TextStyle(
-                                  color: messageTextColor,
-                                  fontSize: screenWidth * 0.032),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        body: Column(
+          children: [
+            _header(context, screenWidth, screenHeight),
+            Expanded(
+              child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: _body(context, screenWidth, screenHeight)),
             ),
-          ),
+          ],
         ),
       ),
     );
+  }
+
+  Widget _body(context, screenWidth, screenHeight) {
+    return Column(children: [
+      SizedBox(
+        width: screenWidth * 0.025,
+        height: screenWidth * 0.025,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Card(
+            color: focusBackgroundColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Container(
+              padding: EdgeInsets.all(screenWidth * 0.045),
+              width: screenWidth * 0.888,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "Regulamento: ",
+                    style: TextStyle(
+                        color: mainColor, fontSize: screenWidth * 0.055),
+                    softWrap: true,
+                  ),
+                  SizedBox(
+                    width: screenWidth * 0.025,
+                    height: screenWidth * 0.025,
+                  ),
+                  Text(
+                    widget._answer,
+                    style: TextStyle(
+                        color: messageTextColor, fontSize: screenWidth * 0.032),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    ]);
   }
 
   Widget _header(

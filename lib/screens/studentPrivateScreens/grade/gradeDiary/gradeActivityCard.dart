@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class GradeActivityCard extends StatelessWidget {
