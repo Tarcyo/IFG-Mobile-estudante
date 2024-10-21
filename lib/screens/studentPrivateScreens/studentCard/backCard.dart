@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class BackCard extends StatelessWidget {
-  const BackCard({
+  final Map<String, dynamic> _studentData;
+
+  const BackCard(
+    this._studentData, {
     Key? key,
   }) : super(key: key);
 
@@ -23,7 +26,6 @@ class BackCard extends StatelessWidget {
               color: focusBackgroundColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(screenWidth * 0.043),
-               
               ),
               child: Container(
                 padding: EdgeInsets.all(screenWidth * 0.02),
@@ -35,7 +37,7 @@ class BackCard extends StatelessWidget {
                       height: screenWidth * 0.01,
                     ),
                     Text(
-                      "Campus Inhumas",
+                      "Campus -----",
                       style: TextStyle(
                           fontSize: screenWidth * 0.055, color: mainColor),
                     ),
@@ -60,7 +62,7 @@ class BackCard extends StatelessWidget {
                                     style: TextStyle(
                                         fontSize: screenWidth * 0.045,
                                         color: mainColor)),
-                                Text("20211030180055",
+                                Text(_studentData['matricula'],
                                     style: TextStyle(
                                         fontSize: screenWidth * 0.04,
                                         color: messageTextColor)),
@@ -97,7 +99,7 @@ class BackCard extends StatelessWidget {
                                             fontSize: screenWidth * 0.035,
                                             color: mainColor)),
                                     SizedBox(height: screenWidth * 0.01),
-                                    Text("Matriculado",
+                                    Text(_studentData['situacao'],
                                         style: TextStyle(
                                             fontSize: screenWidth * 0.04,
                                             color: messageTextColor)),
@@ -125,7 +127,7 @@ class BackCard extends StatelessWidget {
                                             fontSize: screenWidth * 0.035,
                                             color: mainColor)),
                                     SizedBox(height: screenWidth * 0.01),
-                                    Text("07/07/2024",
+                                    Text("----",
                                         style: TextStyle(
                                             fontSize: screenWidth * 0.04,
                                             color: messageTextColor)),
@@ -156,7 +158,7 @@ class BackCard extends StatelessWidget {
                                             fontSize: screenWidth * 0.035,
                                             color: mainColor)),
                                     SizedBox(height: screenWidth * 0.01),
-                                    Text("13/12/2022",
+                                    Text("----",
                                         style: TextStyle(
                                             fontSize: screenWidth * 0.04,
                                             color: messageTextColor)),
@@ -184,7 +186,7 @@ class BackCard extends StatelessWidget {
                                             fontSize: screenWidth * 0.035,
                                             color: mainColor)),
                                     SizedBox(height: screenWidth * 0.01),
-                                    Text("4523240 - SSP/GO",
+                                    Text("----",
                                         style: TextStyle(
                                             fontSize: screenWidth * 0.04,
                                             color: messageTextColor)),

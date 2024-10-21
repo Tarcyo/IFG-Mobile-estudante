@@ -468,7 +468,7 @@ class StudentScreen extends StatelessWidget {
             Icons.badge,
             onPressed: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => StudentCardScreen()),
+              MaterialPageRoute(builder: (context) => StudentCardScreen(_dadosDoAluno)),
             ),
           ),
         ],
