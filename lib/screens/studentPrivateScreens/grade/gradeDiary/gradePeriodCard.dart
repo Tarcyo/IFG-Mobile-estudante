@@ -26,7 +26,7 @@ class GradePeriodCard extends StatelessWidget {
             width: screenWidth * 0.35,
             decoration: BoxDecoration(
               color: mainColor,
-              borderRadius: BorderRadius.circular(screenWidth * 0.04),
+              borderRadius: BorderRadius.circular(screenWidth * 0.1),
             ),
             child: Center(
               child: Column(
@@ -86,7 +86,7 @@ class GradePeriodCard extends StatelessWidget {
           width: screenWidth * 0.35,
           decoration: BoxDecoration(
             color: indicatorColor,
-            borderRadius: BorderRadius.circular(screenWidth * 0.04),
+            borderRadius: BorderRadius.circular(screenWidth * 0.1),
           ),
           child: Center(
             child: Column(

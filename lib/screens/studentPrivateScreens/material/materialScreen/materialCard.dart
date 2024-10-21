@@ -32,7 +32,7 @@ class MaterialCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: mainColor,
                   borderRadius:
-                      BorderRadius.all(Radius.circular(screenWidth * 0.04)),
+                      BorderRadius.all(Radius.circular(screenWidth * 180)),
                 ),
                 child: Center(
                   child: Column(

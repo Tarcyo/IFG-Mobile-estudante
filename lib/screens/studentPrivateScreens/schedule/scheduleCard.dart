@@ -35,7 +35,7 @@ class ScheduleCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: mainColor,
                   borderRadius:
-                      BorderRadius.all(Radius.circular(screenWidth * 0.04)),
+                      BorderRadius.all(Radius.circular(screenWidth * 0.055)),
                 ),
                 child: Center(
                   child: Column(

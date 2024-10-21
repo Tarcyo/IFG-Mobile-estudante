@@ -117,9 +117,9 @@ class _MaterialScreenState extends State<MaterialScreen> {
             height: screenHeight * 0.15,
             width: screenHeight * 0.15,
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
+              borderRadius:
+                  BorderRadius.all(Radius.circular(screenWidth * 1)),
               color: backgroundColor,
-              border: Border.all(color: mainColor, width: 1),
             ),
             child: Padding(
               padding: EdgeInsets.all(screenWidth * 0.02),
@@ -149,7 +149,7 @@ class _MaterialScreenState extends State<MaterialScreen> {
   Widget _body(BuildContext context, screenWidth, screenHeight) {
     return Container(
       child: ListView(
-      physics: const BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         children: [
           MaterialCard(

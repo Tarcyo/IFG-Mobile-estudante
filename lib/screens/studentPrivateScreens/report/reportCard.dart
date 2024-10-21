@@ -22,28 +22,18 @@ class ReportCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    Color corFaltas = alertColor;
-    if ((maxAbsences / 2) > absences) {
-      corFaltas = mainColor;
-    } else if ((maxAbsences - 4) <= absences) {
-      corFaltas = urgentAlertColor;
-    }
+    Color corFaltas = mainColor;
 
-    Color? corNota = alertColor;
-    if (grade >= 6.5) {
-      corNota = mainColor;
-    } else if (grade < 6) {
-      corNota = urgentAlertColor;
-    }
+    corFaltas = mainColor;
 
-    Color corSituacao = alertColor;
+    Color? corNota = mainColor;
+
+    Color corSituacao = mainColor;
     IconData iconeSituacao = Icons.pending;
     if (situation == 'Aprovado') {
       iconeSituacao = Icons.verified;
-      corSituacao = mainColor;
     } else if (situation == 'Reprovado') {
       iconeSituacao = Icons.warning;
-      corSituacao = urgentAlertColor;
     }
 
     return Center(
@@ -56,13 +46,18 @@ class ReportCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
+                  
                   height: screenWidth * 0.25,
                   width: screenWidth * 0.25,
                   decoration: BoxDecoration(
                     color: corSituacao,
                     borderRadius:
-                        BorderRadius.all(Radius.circular(screenWidth * 0.04)),
+                        BorderRadius.all(Radius.circular(screenWidth * 0.07)),
+                         
+            
+        
                   ),
+                  
                   child: Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

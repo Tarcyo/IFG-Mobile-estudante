@@ -37,7 +37,7 @@ class GradeActivityCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: mainColor,
                       borderRadius:
-                          BorderRadius.all(Radius.circular(screenWidth * 0.04)),
+                          BorderRadius.all(Radius.circular(screenWidth * 0.08)),
                     ),
                     child: Center(
                       child: Column(
@@ -168,7 +168,6 @@ class GradeActivityCard extends StatelessWidget {
     IconData indicatorIcon = Icons.emoji_events;
     
     if (myGrade! < (activityMaxGrade * 0.6)) {
-      indicatorColor = urgentAlertColor;
       indicatorIcon = Icons.warning;
     }
     return Center(
@@ -186,7 +185,7 @@ class GradeActivityCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: indicatorColor,
                     borderRadius:
-                        BorderRadius.all(Radius.circular(screenWidth * 0.04)),
+                        BorderRadius.all(Radius.circular(screenWidth * 0.11)),
                   ),
                   child: Center(
                     child: Column(

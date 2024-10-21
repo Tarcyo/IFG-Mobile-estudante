@@ -23,7 +23,26 @@ class HeaderBuilder extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      color: mainColor,
+      decoration: BoxDecoration(
+        gradient: RadialGradient(
+          colors: [
+            gradientColor,
+            mainColor
+          ],
+          radius: 0.8,
+          center: Alignment.center, 
+        ),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(30), 
+          bottomRight: Radius.circular(30), 
+        ),
+        border: Border(
+          bottom: BorderSide(
+            color: Color.fromARGB(255, 73, 171, 84), // Cor da borda
+            width: 5.0, // Espessura da borda
+          ),
+        ),
+      ),
       padding: EdgeInsets.symmetric(
           horizontal: screenWidth * 0.02, vertical: screenWidth * 0.02),
       child: Column(

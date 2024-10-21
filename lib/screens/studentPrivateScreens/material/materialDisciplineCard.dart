@@ -29,6 +29,7 @@ class MaterialDisciplineCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
+              
               width: screenWidth *
                   0.15, 
               height: screenWidth *
@@ -37,7 +38,7 @@ class MaterialDisciplineCard extends StatelessWidget {
                 color: mainColor,
                 borderRadius: BorderRadius.circular(
                     screenWidth *
-                        0.05),
+                        1),
               ),
               child: Center(
                 child: Icon(
