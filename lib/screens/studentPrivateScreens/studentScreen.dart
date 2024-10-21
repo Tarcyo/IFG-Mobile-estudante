@@ -1,3 +1,4 @@
+import 'dart:convert' show json;
 import 'package:flutter/material.dart';
 import 'package:ifg_mobile_estudante/screens/studentPrivateScreens/schedule/scheduleScreen.dart';
 import 'package:ifg_mobile_estudante/screens/studentPrivateScreens/grade/gradeDisciplineSelection.dart';
@@ -8,6 +9,7 @@ import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart';
 import 'package:ifg_mobile_estudante/reusableWidgets/veryLongHorizontalButtom.dart';
 import 'package:ifg_mobile_estudante/reusableWidgets/verticalButtom.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
+import 'package:ifg_mobile_estudante/services/apiNotas.dart';
 
 class StudentScreen extends StatelessWidget {
   final Map<String, dynamic> _dadosDoAluno;
@@ -320,15 +322,125 @@ class StudentScreen extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => ScheduleScreen()),
                   ),
                 ),
-                VerticalButtom(
-                  'Minhas\nNotas',
-                  Icons.emoji_events,
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => GradeDisciplineScreen()),
-                  ),
-                ),
+                VerticalButtom('Minhas\nNotas', Icons.emoji_events,
+                    onPressed: () async {
+                  // Exibir o diálogo de carregamento
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Carregando...",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: screenHeight * 0.035),
+                            ),
+                            SizedBox(
+                              width: screenHeight * 0.06,
+                              height: screenHeight * 0.06,
+                              child: CircularProgressIndicator(
+                                strokeWidth:
+                                    screenHeight * 0.01, // Espessura da linha
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                  final notasDoAluno =
+                      await solicitaNotasAluno(_dadosDoAluno['matricula']);
+
+                  print("As notas são:"+notasDoAluno.toString());
+
+                  Navigator.of(context, rootNavigator: true).pop();
+
+                  if (notasDoAluno == false) {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: backgroundColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32.0),
+                          ),
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Atenção",
+                                style: TextStyle(
+                                  fontSize: screenWidth * 0.055,
+                                  fontWeight: FontWeight.bold,
+                                  color: mainColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                "Falha ao tentar conectar.\nVerifique seus dados e tente novamente.",
+                                style: TextStyle(
+                                  color: messageTextColor,
+                                  fontSize: screenWidth * 0.032,
+                                ),
+                              ),
+                            ],
+                          ),
+                          actions: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: mainColor,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(180.0),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(
+                                    "Ok",
+                                    style: TextStyle(
+                                      color: backgroundColor,
+                                      fontSize: screenWidth * 0.032,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  } else {
+                    final List<dynamic> notasDoAlunoDecodificadas =
+                        json.decode(notasDoAluno);
+
+                    print(
+                        "As notas são:" + notasDoAlunoDecodificadas[0].toString());
+                    Navigator.of(context).pop();
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GradeDisciplineScreen(notasDoAlunoDecodificadas),
+                      ),
+                    );
+                  }
+                }),
                 VerticalButtom(
                   'Meu\nBoletim',
                   Icons.assignment,

@@ -5,7 +5,8 @@ import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class GradeDiaryScreen extends StatefulWidget {
-  GradeDiaryScreen({Key? key});
+  final dynamic _data;
+  GradeDiaryScreen(this._data, {Key? key});
 
   @override
   State<GradeDiaryScreen> createState() => _GradeDiaryScreenState();
@@ -60,113 +61,128 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
 
   Widget _header(BuildContext context, screenWidth, screenHeight) {
     return HeaderBuilder(
-      left: IconButton(
-        icon: Icon(
-          Icons.arrow_back,
-          color: backgroundColor,
-          size: screenWidth * 0.08,
+        left: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: backgroundColor,
+            size: screenWidth * 0.08,
+          ),
+          onPressed: () => {Navigator.of(context).pop()},
         ),
-        onPressed: () => {Navigator.of(context).pop()},
-      ),
-      right: IconButton(
-        icon: Icon(
-          Icons.help_outline,
-          color: backgroundColor,
-          size: screenWidth * 0.08,
-        ),
-        onPressed: () => {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                backgroundColor: backgroundColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(32.0),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Ajuda",
-                      style: TextStyle(
-                        fontSize: screenWidth * 0.055,
-                        fontWeight: FontWeight.bold,
-                        color: mainColor,
-                      ),
-                    ),
-                  ],
-                ),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Seleção de Período: Utilize a barra de navegação na parte superior da tela para selecionar o período letivo desejado.\n\nMédia Final da Etapa: No card grande exibido na parte superior da tela, você encontrará sua média final da etapa. Notas Individuais de Atividades: Abaixo da média final, você verá cards menores representando suas notas individuais em cada atividade. \n\nÍcone de Troféu: Se sua nota estiver dentro da média, você verá um ícone de troféu. Isso indica um bom desempenho na atividade.\n\nÍcone de Alerta: Se sua nota estiver abaixo da média, um ícone de alerta será exibido.",
-                      style: TextStyle(
-                        color: messageTextColor,
-                        fontSize: screenWidth * 0.032,
-                      ),
-                    ),
-                  ],
-                ),
-                actions: [
-                  Row(
+        right: IconButton(
+          icon: Icon(
+            Icons.help_outline,
+            color: backgroundColor,
+            size: screenWidth * 0.08,
+          ),
+          onPressed: () => {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  backgroundColor: backgroundColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0),
+                  ),
+                  title: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: mainColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(180.0),
-                          ),
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                          "Ok",
-                          style: TextStyle(
-                            color: backgroundColor,
-                            fontSize: screenWidth * 0.032,
-                          ),
+                      Text(
+                        "Ajuda",
+                        style: TextStyle(
+                          fontSize: screenWidth * 0.055,
+                          fontWeight: FontWeight.bold,
+                          color: mainColor,
                         ),
                       ),
                     ],
                   ),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Seleção de Período: Utilize a barra de navegação na parte superior da tela para selecionar o período letivo desejado.\n\nMédia Final da Etapa: No card grande exibido na parte superior da tela, você encontrará sua média final da etapa. Notas Individuais de Atividades: Abaixo da média final, você verá cards menores representando suas notas individuais em cada atividade. \n\nÍcone de Troféu: Se sua nota estiver dentro da média, você verá um ícone de troféu. Isso indica um bom desempenho na atividade.\n\nÍcone de Alerta: Se sua nota estiver abaixo da média, um ícone de alerta será exibido.",
+                        style: TextStyle(
+                          color: messageTextColor,
+                          fontSize: screenWidth * 0.032,
+                        ),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: mainColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(180.0),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            "Ok",
+                            style: TextStyle(
+                              color: backgroundColor,
+                              fontSize: screenWidth * 0.032,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                );
+              },
+            )
+          },
+        ),
+        center: Center(
+          child: Container(
+            height: screenHeight * 0.15,
+            width: screenHeight * 0.15,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: backgroundColor,
+              border: Border.all(color: mainColor, width: screenWidth * 0.005),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(screenWidth * 0.02),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Icon(
+                    Icons.emoji_events,
+                    size: screenHeight * 0.1,
+                    color: mainColor,
+                  ),
                 ],
-              );
-            },
-          )
-        },
-      ),
-      center: Center(
-        child: Container(
-          height: screenHeight * 0.15,
-          width: screenHeight * 0.15,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: backgroundColor,
-            border: Border.all(color: mainColor, width: screenWidth * 0.005),
-          ),
-          child: Padding(
-            padding: EdgeInsets.all(screenWidth * 0.02),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Icon(
-                  Icons.emoji_events,
-                  size: screenHeight * 0.1,
-                  color: mainColor,
-                ),
-              ],
+              ),
             ),
           ),
         ),
-      ),
-      top: Text(
-        "Sistemas Distribuidos",
-        style: TextStyle(fontSize: screenWidth * 0.06, color: backgroundColor),
-      ),
-      bottom: TabBar(
+        top: Center(
+          child: Text(
+            widget._data['disciplina']
+                .substring(widget._data['disciplina'].indexOf(' - ') + 2),
+            style: TextStyle(
+                fontSize: screenWidth * 0.055, color: backgroundColor),
+            softWrap: true, // Permite quebra de linha automática
+            overflow: TextOverflow
+                .fade, // Garante que o texto continue visível, mesmo quebrando
+          ),
+        ),
+        bottom: Center(
+          child: Text(
+           "Situação: "+ widget._data['situacao_texto'],
+            style: TextStyle(
+                fontSize: screenWidth * 0.055, color: backgroundColor),
+          ),
+        )
+
+        /*TabBar(
         tabAlignment: TabAlignment.center,
         controller: _tabController,
         isScrollable: true,
@@ -190,19 +206,34 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
             )
             .toList(),
       ),
-    );
+      */
+        );
   }
 
   Widget _body(BuildContext context, screenWidth, screenHeight) {
     return TabBarView(
       controller: _tabController,
       children: periods
-          .map((day) => _buildDaySchedule(context, screenWidth, screenHeight))
+          .map((day) => _buildScreenBody(context, screenWidth, screenHeight))
           .toList(),
     );
   }
 
-  Widget _buildDaySchedule(BuildContext context, screenWidth, screenHeight) {
+  Widget _buildScreenBody(BuildContext context, screenWidth, screenHeight) {
+    final List<String> chavesList = widget._data.keys.toList();
+    final List<Widget> notas = [];
+    for (int i = 1; i < chavesList.length - 2; i++) {
+      print("Exemplo de chave: " + chavesList[i]);
+
+      notas.add(
+        GradeActivityCard(
+            activityName: "Nota " + (i).toString(),
+            activityMaxGrade: 100,
+            activityType: "Nota do periodo",
+            activtyDate: "03/01/2023",
+            myGrade: widget._data[chavesList[i]] ?? '-'),
+      );
+    }
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
@@ -212,8 +243,8 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GradePeriodCard(
-                activityMaxGrade: 10,
-                myGrade: 8.5,
+                activityMaxGrade: 100,
+                myGrade: widget._data['nota_final'] ?? '-',
               ),
             ],
           ),
@@ -221,27 +252,7 @@ class _GradeDiaryScreenState extends State<GradeDiaryScreen>
             width: screenWidth * 0.015,
             height: screenWidth * 0.015,
           ),
-          GradeActivityCard(
-            activityName: "Prova prática",
-            activityMaxGrade: 10,
-            activityType: "Avaliação aplicada pelo professor",
-            activtyDate: "03/01/2023",
-            myGrade: 8.5,
-          ),
-          GradeActivityCard(
-            activityName: "Projeto em grupo",
-            activityMaxGrade: 6,
-            activityType: "Atividade avaliativa",
-            activtyDate: "04/01/2023",
-            myGrade: 3.3,
-          ),
-          GradeActivityCard(
-            activityName: "Atividades em sala",
-            activityMaxGrade: 10,
-            activityType: "Atividade avaliativa",
-            activtyDate: "06/01/2023",
-            myGrade: 2,
-          ),
+          ...notas,
         ],
       ),
     );

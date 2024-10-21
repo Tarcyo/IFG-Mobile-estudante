@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'gradeDisciplineCard.dart';
-import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart'; 
+import 'package:ifg_mobile_estudante/reusableWidgets/headerBuilder.dart';
 import 'package:ifg_mobile_estudante/styles/colors.dart';
 
 class GradeDisciplineScreen extends StatefulWidget {
-  GradeDisciplineScreen({Key? key}) : super(key: key);
+  final dynamic _notasDoAluno;
+  GradeDisciplineScreen(this._notasDoAluno, {Key? key}) : super(key: key);
 
   @override
   _GradeDisciplineScreenState createState() => _GradeDisciplineScreenState();
@@ -191,6 +192,10 @@ class _GradeDisciplineScreenState extends State<GradeDisciplineScreen>
   }
 
   Widget _buildItem(BuildContext context, screenWidth, screenHeight) {
+    final List<Widget> disciplines = [];
+    for (final data in widget._notasDoAluno) {
+      disciplines.add(GradeDisciplineCard(data));
+    }
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
@@ -210,8 +215,7 @@ class _GradeDisciplineScreenState extends State<GradeDisciplineScreen>
             width: screenWidth * 0.05,
             height: screenWidth * 0.05,
           ),
-          GradeDisciplineCard(discipline: "Sistemas Distribuidos"),
-          GradeDisciplineCard(discipline: "Fabrica de Software")
+          ...disciplines
         ],
       ),
     );
